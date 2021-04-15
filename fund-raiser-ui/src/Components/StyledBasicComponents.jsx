@@ -37,10 +37,9 @@ export const SideBarItem = ({children}) => {
 }
 
 const CardContainer = styled.div`
+float:left;
 height:452px;
-min-width: 260px;
-max-width: 320px;
-width :260px;
+width: 21.8vw;
 border-radius:20px;
 margin:10px;
 &:hover{
@@ -68,7 +67,10 @@ margin-left:10px;
 padding:0px;
 font-size:14px;`
 
-export const DisplayCard = ({title,imageURL, achievedPercent, 
+export const DisplayCard = ({
+    title = "Help Jasper Paul Rescue People Abandoned, Dying On The Streets. Support ‘The Second Chance’",
+    imageURL = "https://kettocdn.gumlet.io/media/campaign/342000/342482/image/wid323b78c9f7e9daa2179f02aa6cfffc4dbfbafc29.jpg?w=300",
+    achievedPercent = 50, 
     AuthorName = "Jasper Paul", 
     raisedValue= 123356,
     lastDonation = 7,
