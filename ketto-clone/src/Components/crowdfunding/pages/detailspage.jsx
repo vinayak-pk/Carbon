@@ -2,7 +2,9 @@ import react, { useEffect, useRef } from "react"
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { addData } from '../../../Redux/crowdfunding_register/cf_action';
+import styled from "styled-components"
 export const reference = [
+
         {
             name:"Influencers/Content Creators",
             value:"Influencers/Content Creators"
@@ -31,6 +33,7 @@ export const reference = [
 ]
 
 export const fund_for = [
+
     {
         value:"myself",
         name:"Myself"
@@ -54,30 +57,48 @@ let initVal = {
     ref:"",
     img:""
 }
+
+let Formbody = styled.div`
+width:30%;
+margin:auto;
+min-height:150px;
+padding:2%;
+border:1px solid lightgray;
+`
+
+let Input = styled.input`
+width:100%;
+border:0px;
+border-bottom:1px solid black;
+`
+let Select = styled.select`
+width:100%;
+border:0px;
+border-bottom:1px solid black;
+`
 export function InitForm(){
     let [query,setQuery] = react.useState(initVal);
-    let [image,setImage] = react.useState("");
+    let {name,acc,ref} = query
     let dispatch = useDispatch();
     let imagerRef = useRef();
     let handleChange = (e)=>{
     let {name,value} = e.target;
     setQuery({...query,[name]:value});
     }
-     let onSubmit = (e)=>{
+     let onSubmit = async(e)=>{
         e.preventDefault();
-        handleImage().then(()=> {console.log(image); setQuery({...query,img:image})});
-    
-        // dispatch(addData(query));
+         dispatch(addData(query));
+     setQuery(initVal)
     }
-    console.log(image)
-    // console.log(query,image)
+
     let handleImage = async()=>{
+        console.log('here');
         let imageVal = imagerRef.current.files[0];
         if(imageVal===undefined ){
             return
         }
         let base = await convertBase64(imageVal);
-        setImage(base);
+        setQuery({...query,img:base});
     }
     let convertBase64 = (file)=> {
         return new Promise((resolve,reject)=>{
@@ -93,30 +114,32 @@ export function InitForm(){
         });    
     };
     return (
-        <div>
+        <Formbody>
             <div>
-                <h1>Tell us more about your Fundraiser</h1>
+                <h3>Tell us more about your Fundraiser</h3 >
             </div>
             <div>
-            <form onSubmit={onSubmit}>
-                <input name="name" onChange={handleChange} placeholder="How much do you want to raise?" type="text"/>
-               <select name="acc" onChange={handleChange} id="">
-                  {fund_for.map((el,i)=>{
-                      return <option key={i} value={el.value}>{el.name}</option>
-                  })}
-               </select>
-              <select name="ref" onChange={handleChange} id="">
-                  {reference.map((el,i)=>{
-                      return <option key={i} value={el.name}>{el.value}</option>
-                  })}
-             </select>
-                <input ref={imagerRef} type="file"/>
-            </form>
+                <form onSubmit={onSubmit}>
+                    <Input value={name} name="name" onChange={handleChange} placeholder="How much do you want to raise?" type="number"/>
+                    <Select value={acc} name="acc" onChange={handleChange} placeholder="The Patient is my..." id="">
+                        <option value="" disabled defaultValue hidden>The Patient is my...</option>
+                        {fund_for.map((el,i)=>{
+                            return <option key={i} value={el.value}>{el.name}</option>
+                        })}
+                    </Select>
+                    <Select value={ref} name="ref" onChange={handleChange} placeholder="How did You Hear About Us" id="">
+                        <option value="" disabled defaultValue hidden>How did You Hear About Us</option>
+                        {reference.map((el,i)=>{                 
+                            return <option key={i} value={el.name}>{el.value}</option>
+                        })}
+                    </Select>
+                    <input onChange={handleImage} ref={imagerRef} type="file"/>
+                </form>
             </div>
             <div>
                 <Link onClick={onSubmit} to="/new/fundraiser">Save and continue</Link>
             </div>
-        </div>
+        </Formbody>
        
     )
 }
