@@ -15,6 +15,24 @@ color:#444;
 const SideBarItemsList = ['All Categories', 'Medical', 'Women & Girls', 'Animals', 'Creative', 'Food & Hunger', 
 'Environment', 'Children', 'Memorial', 'Community Development', 'Others'];
 const LinkedSideBarItems = SideBarItemsList.map((item) => (<StyledLink to = {item}>{item}</StyledLink>))
+const HeaderDiv = styled.div`
+background-image : url('https://www.ketto.org/new/browse-banner.9d14784ddc352882b9bd.png');
+background-repeat: no-repeat;
+background-size: auto;
+height:60vh;
+margin-bottom:20px;`
+const HeaderTitle = styled.div`
+font-weight: 700;
+font-size: 72px;
+text-align: center;
+color: #fff;
+margin:auto;
+padding-top:80px;`
+const HeaderSubTitle = styled.div`
+line-height: 45px;
+font-size: 36px;
+text-align: center;
+color: #fff;`
 
 export const BrowseFundraiser = () => {
     const [fundRaisers, setFundRaisers] = React.useState([]);
@@ -44,7 +62,10 @@ export const BrowseFundraiser = () => {
     console.log('Fund raiser',fundRaisers);
     return (
     <div>
-    <div>BROWSE FUNDRAISER HEADING</div>
+    <HeaderDiv>
+        <HeaderTitle>Browse Fundraisers</HeaderTitle>
+        <HeaderSubTitle>Choose from <span style = {{fontWeight: "600"}}>1,50,256</span> fundraisers to support</HeaderSubTitle>
+    </HeaderDiv>
     <div style = {{float:"left"}}>
         <SideBar>
             <SideBarItem children = {LinkedSideBarItems}/>
@@ -58,6 +79,7 @@ export const BrowseFundraiser = () => {
             AuthorName = {item.first_name + " " + item.last_name}
             raisedValue = {item.curr_donation}
             achievedPercent = {Math.floor((item.donation_goal - item.curr_donation)/(item.donation_goal) * 100)}
+            lastDonation = {Math.floor(Math.random() * 23)}
             daysLeft = {getDaysLeft(item.due_date)}/>))}
     </div>
     </div>)
