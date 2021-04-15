@@ -80,7 +80,7 @@ function Navbar() {
           </li>
           <li className='nav-item'>
             <Link
-              to={'/https://api.whatsapp.com/send?phone=917700975559'}
+              to={'https://api.whatsapp.com/send?phone=917700975559'}
               className='nav-links-chat'
               onClick={closeMobileMenu}
             >
