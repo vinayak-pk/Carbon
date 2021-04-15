@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import {DisplayCard, SideBar, SideBarItem} from "./StyledBasicComponents";
+import {DisplayCard, SideBar, SideBarItem, BannerItem} from "./StyledBasicComponents";
 import '../index.css';
 import styled from "styled-components";
 import axios from 'axios';
@@ -34,6 +34,19 @@ font-size: 36px;
 text-align: center;
 color: #fff;`
 
+const HeaderBanner = styled.div`
+background: rgba(0,0,0,.7);
+height: 88px;
+width: 100%;
+position: absolute;
+bottom: 0;
+margin:0;
+display: -ms-flexbox;
+display: flex;
+-ms-flex-align: center;
+align-items: center;
+margin-bottom:40vh;`
+
 export const BrowseFundraiser = () => {
     const [fundRaisers, setFundRaisers] = React.useState([]);
     const getData = () => {
@@ -64,8 +77,22 @@ export const BrowseFundraiser = () => {
     <div>
     <HeaderDiv>
         <HeaderTitle>Browse Fundraisers</HeaderTitle>
-        <HeaderSubTitle>Choose from <span style = {{fontWeight: "600"}}>1,50,256</span> fundraisers to support</HeaderSubTitle>
+        <HeaderSubTitle>
+            Choose from <span style = {{fontWeight: "600"}}>1,50,256</span> fundraisers to support
+        </HeaderSubTitle>
+        <HeaderBanner>
+            <BannerItem />
+            <BannerItem 
+            imgUrl = "https://ketto.gumlet.io/assets/images/browse-campaign/raised.png"
+            summaryHeader = "₹1100 Crs+"
+            summarySubHeader = "SUCCESSFULLY RAISED"/>
+            <BannerItem 
+            imgUrl = "https://ketto.gumlet.io/assets/images/browse-campaign/donors.png"
+            summaryHeader = "55 Lakh+"
+            summarySubHeader = 'DONORS FROM AROUND THE WORLD'/>
+        </HeaderBanner>
     </HeaderDiv>
+
     <div style = {{float:"left"}}>
         <SideBar>
             <SideBarItem children = {LinkedSideBarItems}/>
@@ -80,7 +107,8 @@ export const BrowseFundraiser = () => {
             raisedValue = {item.curr_donation}
             achievedPercent = {Math.floor((item.donation_goal - item.curr_donation)/(item.donation_goal) * 100)}
             lastDonation = {Math.floor(Math.random() * 23)}
-            daysLeft = {getDaysLeft(item.due_date)}/>))}
+            daysLeft = {getDaysLeft(item.due_date)}
+            supportersCount = {item.supporters}/>))}
     </div>
     </div>)
 }

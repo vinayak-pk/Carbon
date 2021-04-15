@@ -70,13 +70,20 @@ font-size:14px;`
 export const DisplayCard = ({
     title = "Help Jasper Paul Rescue People Abandoned, Dying On The Streets. Support ‘The Second Chance’",
     imageURL = "https://kettocdn.gumlet.io/media/campaign/342000/342482/image/wid323b78c9f7e9daa2179f02aa6cfffc4dbfbafc29.jpg?w=300",
-    achievedPercent = 50, 
+    achievedPercent = 110, 
     AuthorName = "Jasper Paul", 
     raisedValue= 123356,
     lastDonation = 7,
     daysLeft = 21,
  supportersCount = 13997} 
     )=> {
+        const extractFirstLetter = (AuthorName) =>{
+            let splitNames = AuthorName.split(" ");
+            return splitNames[0][0] + splitNames[1][0];
+        }
+        if(achievedPercent > 100){
+            achievedPercent = 100;
+        }
     return (
         <CardContainer>
             <img src = {imageURL} width = "100%" height = "170px" alt = {title}
@@ -84,7 +91,7 @@ export const DisplayCard = ({
             <CardTitle>{title}</CardTitle>
             <div>
                 <span style = {{float:"left"}}>
-                <CodeNameBlock><p>AB</p></CodeNameBlock>
+                <CodeNameBlock><p>{extractFirstLetter(AuthorName)}</p></CodeNameBlock>
                 </span>
                 <p style = {{float:"left", fontSize:"14px", color : "#212529"}}>&emsp;by {AuthorName}</p>
             </div>
@@ -107,4 +114,35 @@ export const DisplayCard = ({
             </div>
         </CardContainer>
     )
+}
+const BannerDiv = styled.div`
+border-right : 1px solid white;
+width : 33%;
+height: 80%;
+margin: auto;`;
+const TextDiv = styled.div`
+color:white;
+float:left;
+font-size:14px;
+font-weight:bold;`
+export const BannerItem = (
+    {imgUrl = "https://ketto.gumlet.io/assets/images/browse-campaign/lives-impacted.png",
+    summaryHeader = " 2 Lakh+",
+    summarySubHeader = " LIVES IMPACTED"}
+
+    ) => {
+        return(
+        <BannerDiv>
+            <div style ={{marginLeft:"8vw"}}>
+            <TextDiv>
+                <img src = {imgUrl} height = "64px" width = "64px" margin-right="20px" alt = {summarySubHeader}/>
+            </TextDiv>
+            <TextDiv>
+               <span style = {{fontSize:"30px"}}>{summaryHeader}</span>
+               <br/>
+               {summarySubHeader}
+            </TextDiv>
+            </div>
+        </BannerDiv>
+        );
 }
