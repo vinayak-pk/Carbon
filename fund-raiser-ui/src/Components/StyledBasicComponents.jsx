@@ -1,6 +1,6 @@
 import React from "react";
 import styled from 'styled-components';
-import { ProgressBar } from 'team-carbon-ui';
+import { ProgressBar } from './ProgressBar';
 const StyledLi = styled.li`
 text-decoration: none;
 color : #212529;
@@ -37,8 +37,10 @@ export const SideBarItem = ({children}) => {
 }
 
 const CardContainer = styled.div`
-height:60vh;
-width :320px;
+height:452px;
+min-width: 260px;
+max-width: 320px;
+width :260px;
 border-radius:20px;
 margin:10px;
 &:hover{
@@ -69,7 +71,9 @@ font-size:14px;`
 export const DisplayCard = ({title,imageURL, achievedPercent, 
     AuthorName = "Jasper Paul", 
     raisedValue= 123356,
-    lastDonation = 7} 
+    lastDonation = 7,
+    daysLeft = 21,
+ supportersCount = 13997} 
     )=> {
     return (
         <CardContainer>
@@ -81,16 +85,24 @@ export const DisplayCard = ({title,imageURL, achievedPercent,
                 <CodeNameBlock><p>AB</p></CodeNameBlock>
                 </span>
                 <p style = {{float:"left", fontSize:"14px", color : "#212529"}}>&emsp;by {AuthorName}</p>
-                </div>
-                <br/>
+            </div>
+               
                 <div style = {{clear:"both",float:"left", marginLeft : "10px"}}>
-                    <p style = {{fontSize: "25px", fontWeight:"bold", color:"#444444"}}>&euro;{raisedValue}
-                    <span style = {{fontSize: "20px", fontWeight:"normal", color:"#999999"}}>&ensp;raised</span></p>
-                    </div>
-            <div style = {{float:"left", clear:"left"}}>
+                    <p style = {{fontSize: "20px", fontWeight:"bold", color:"#444444"}}>&euro;{raisedValue}
+                    <span style = {{fontSize: "18px", fontWeight:"normal", color:"#999999"}}>&ensp;raised</span></p>
+                </div>
+            <div style = {{float:"left", clear:"left", width:"100%"}}>
             <ProgressBar sliderColor = "#01bfbd" completed ={achievedPercent}/>
             </div>
-            <div style = {{float: "left", clear:"both"}}>Last donation {lastDonation} hours ago</div>
+            <div style = {{fontSize: "17px", 
+            fontWeight:"normal", 
+            color:"#999999",
+            float: "left", 
+            clear:"both"}}>Last donation {lastDonation} hours ago</div>
+            <div style = {{float:"left", clear:"both",width:"100%", color:"#444444"}}>
+                <div style = {{float:"left", fontSize:"15px", textAlign:"left"}}><p><span>{daysLeft}</span>Days Left</p></div>
+                <div style = {{float:"right", fontSize:"15px", textAlign:"right"}}><p>{supportersCount} Supporters</p></div>
+            </div>
         </CardContainer>
     )
 }

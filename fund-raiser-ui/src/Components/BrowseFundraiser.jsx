@@ -16,6 +16,7 @@ const SideBarItemsList = ['All Categories', 'Medical', 'Women & Girls', 'Animals
 const LinkedSideBarItems = SideBarItemsList.map((item) => (<StyledLink to = {item}>{item}</StyledLink>))
 
 export const BrowseFundraiser = () => {
+    const [fundRaisers, setFundRaisers] = React.useState();
     return (
     <div>
     <div style = {{float:"left"}}>
