@@ -34,13 +34,11 @@ export default function Home() {
                 <p class="home_fontmanage">Ketto’s
                 <span className='home_fontmanage1'> 0% </span> <span className="home_fontmanage2"> Platform fees</span> ensures maximum funds for you</p>
                 <button className='home_button'>Start a Fundraiser for FREE</button>
-                <p className="home_fontmanage3">नि: शुल्क फंडरेजर शुरू करें</p>
+                <br/>
+                <a className="home_fontmanage3" href="#">नि: शुल्क फंडरेजर शुरू करें</a>
               </div>
             </div>
           </div>
-
-
-
         </section>
         {/* <section>
           <div>
