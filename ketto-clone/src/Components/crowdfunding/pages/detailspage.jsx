@@ -1,8 +1,9 @@
-import react, { useEffect, useRef } from "react"
+import react, {  useRef } from "react"
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { addData } from '../../../Redux/crowdfunding_register/cf_action';
 import styled from "styled-components"
+
 export const reference = [
 
         {
@@ -57,27 +58,65 @@ let initVal = {
     ref:"",
     img:""
 }
+export let Body = styled.div`
+width:100%;
+height:100vh;
+background:#1d1d1d;
+`
 
-let Formbody = styled.div`
-width:30%;
+export let Mainbody = styled.div`
+background:white;
+width:35%;
 margin:auto;
-min-height:150px;
+min-height:450px;
+border:1px solid lightgray;
+border-radius:10px;
+`
+export let Formbody = styled.div`
+width:96%;
+margin:auto;
+min-height:350px;
 padding:2%;
 border:1px solid lightgray;
 `
 
-let Input = styled.input`
-width:100%;
+export let Input = styled.input`
+width:85%;
 border:0px;
 border-bottom:1px solid black;
+margin:30px 0px;
+height:35px;
+outline:0px;
+&&:focus{
+    border-bottom:2px solid rgba(1,190,188,255)
+}
 `
-let Select = styled.select`
-width:100%;
+export let Select = styled.select`
+width:85%;
 border:0px;
 border-bottom:1px solid black;
+margin:10px 0px;
+background:white;
+height:35px;
+outline:0px;
+&&:focus{
+    border-bottom:2px solid rgba(1,190,188,255);
+}
+`
+export let Button = styled.button`
+width:100.5%;
+height:45px;
+font-size:20px;
+border:0px;
+color:white;
+outline:0px;
+background:rgba(1,190,188,255);
+border-bottom-left-radius:10px;
+border-bottom-right-radius:10px;
 `
 export function InitForm(){
     let [query,setQuery] = react.useState(initVal);
+    let history = useHistory();
     let {name,acc,ref} = query
     let dispatch = useDispatch();
     let imagerRef = useRef();
@@ -89,6 +128,7 @@ export function InitForm(){
         e.preventDefault();
          dispatch(addData(query));
      setQuery(initVal)
+     history.push('/new/medical/advance')
     }
 
     let handleImage = async()=>{
@@ -114,11 +154,12 @@ export function InitForm(){
         });    
     };
     return (
-        <Formbody>
+        <Body>
+              <Mainbody>
             <div>
                 <h3>Tell us more about your Fundraiser</h3 >
             </div>
-            <div>
+            <Formbody>
                 <form onSubmit={onSubmit}>
                     <Input value={name} name="name" onChange={handleChange} placeholder="How much do you want to raise?" type="number"/>
                     <Select value={acc} name="acc" onChange={handleChange} placeholder="The Patient is my..." id="">
@@ -135,11 +176,13 @@ export function InitForm(){
                     </Select>
                     <input onChange={handleImage} ref={imagerRef} type="file"/>
                 </form>
-            </div>
+            </Formbody>
             <div>
-                <Link onClick={onSubmit} to="/new/fundraiser">Save and continue</Link>
+                <Button onClick={onSubmit}>Save and continue</Button>
             </div>
-        </Formbody>
+            </Mainbody>
+
+        </Body>
        
     )
 }
