@@ -1,5 +1,5 @@
 import React from "react";
-import styled from 'styled-components';
+import styled, {keyframes} from 'styled-components';
 import { ProgressBar } from './ProgressBar';
 const StyledLi = styled.li`
 text-decoration: none;
@@ -75,8 +75,10 @@ export const DisplayCard = ({
     raisedValue= 123356,
     lastDonation = 7,
     daysLeft = 21,
- supportersCount = 13997} 
-    )=> {
+ supportersCount = 13997,
+    id,
+openPaymentModal,
+setOpenPaymentModal})=> {
         const extractFirstLetter = (AuthorName) =>{
             let splitNames = AuthorName.split(" ");
             return splitNames[0][0] + splitNames[1][0];
@@ -85,7 +87,7 @@ export const DisplayCard = ({
             achievedPercent = 100;
         }
     return (
-        <CardContainer>
+        <CardContainer onClick = {() => {setOpenPaymentModal(!openPaymentModal)}}>
             <img src = {imageURL} width = "100%" height = "170px" alt = {title}
             style = {{ borderRadius: "20px" }}/>
             <CardTitle>{title}</CardTitle>
@@ -97,7 +99,7 @@ export const DisplayCard = ({
             </div>
                
                 <div style = {{clear:"both",float:"left", marginLeft : "10px"}}>
-                    <p style = {{fontSize: "20px", fontWeight:"bold", color:"#444444"}}>&euro;{raisedValue}
+                    <p style = {{fontSize: "20px", fontWeight:"bold", color:"#444444"}}>&#8377;{raisedValue}
                     <span style = {{fontSize: "18px", fontWeight:"normal", color:"#999999"}}>&ensp;raised</span></p>
                 </div>
             <div style = {{float:"left", clear:"left", width:"100%"}}>
@@ -167,6 +169,7 @@ padding: 0;
 border: 1px solid #888;
 width: 43vw;
 height:80vh;
+transition: 1s;
 box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
 border-radius:20px;`
 
@@ -198,12 +201,94 @@ color: white;`
 
 export const ModalButton = styled.button`
 height:40px;
-width: 150px;
+width:150px;
 border-radius:20px;
-border:0;
+border: none;
 box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
 margin:auto;
 margin:20px;
 cursor:pointer;
 font-size:15px;
-color : #444444;`
+transition:1s;
+color : #444444;
+&:focus{
+    background-color :#01bfbd;
+    color:white;
+    outline: none;
+}`
+export const StyledLabel = styled.label`
+font-size:10px;
+color : #444444;
+margin-left:25%;`
+
+export const StyledInput = styled.input`
+height:30px;
+width:250px;
+border: none;
+color:#444444;
+outline:none;
+transition:1s;
+border-bottom:1px solid #444444;
+margin-left:25%;
+&:focus{
+    border-bottom : 1px solid #01bfbd;
+}`
+
+export const ProceedToPayButton = styled.button`
+background-color:#01bfbd;
+color:white;
+width:22%;
+height:50px;
+cursor:pointer;
+width:270px;
+margin-left:25%;
+border:none;
+outline:none;
+border-radius:25px;
+font-size:17px;
+padding:10px;
+&:hover{
+    background-color:#039695;
+}`
+
+export const PayButton = styled.button`
+background-color:#01bfbd;
+color:white;
+width:30%;
+height:40px;
+cursor:pointer;
+width:240px;
+margin-left:27%;
+border:none;
+outline:none;
+border-radius:25px;
+font-size:17px;
+padding:10px;
+&:hover{
+    background-color:#039695;
+}`
+
+const rotate360 = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
+export const Spinner = styled.div`
+  animation: ${rotate360} 1s linear infinite;
+  transform: translateZ(0);
+  
+  border-top: 2px solid #b2eceb;
+  border-right: 2px solid #b2eceb;
+  border-bottom: 2px solid #b2eceb;
+  border-left: 4px solid #01bfbd;
+  background: transparent;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin:auto;
+  margin-top:20px;
+`;

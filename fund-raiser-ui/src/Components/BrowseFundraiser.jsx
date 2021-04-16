@@ -47,7 +47,7 @@ display: flex;
 align-items: center;
 margin-bottom:40vh;`
 
-export const BrowseFundraiser = () => {
+export const BrowseFundraiser = ({openPaymentModal, setOpenPaymentModal}) => {
     const [fundRaisers, setFundRaisers] = React.useState([]);
     const getData = () => {
         axios.get("https://carbon-c9c2b-default-rtdb.firebaseio.com/fund_data.json")
@@ -99,8 +99,7 @@ export const BrowseFundraiser = () => {
             </SideBar>
     </div>
     <div style = {{width : "70vw", height:"100vh", float:"left", margin:"auto"}}> 
-        <DisplayCard />
-        {fundRaisers?.map((item) => (
+        {fundRaisers?.map((item, i) => (
             <DisplayCard title = {item.title}
             imageURL = {item.profile_image}
             AuthorName = {item.first_name + " " + item.last_name}
@@ -108,7 +107,11 @@ export const BrowseFundraiser = () => {
             achievedPercent = {Math.floor((item.donation_goal - item.curr_donation)/(item.donation_goal) * 100)}
             lastDonation = {Math.floor(Math.random() * 23)}
             daysLeft = {getDaysLeft(item.due_date)}
-            supportersCount = {item.supporters}/>))}
+            supportersCount = {item.supporters} 
+            id = {i} 
+            key = {item.id} 
+            setOpenPaymentModal = {setOpenPaymentModal}
+            openPaymentModal = {openPaymentModal} />))}
     </div>
     </div>)
 }
