@@ -5,7 +5,10 @@ import AllRouter from './Routes/AllRoutes';
 
 function App() {
   return (
-    <AllRouter/>
+    <>
+      <AllRouter/>
+      
+    </>
   );
 }
 

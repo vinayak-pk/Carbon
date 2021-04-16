@@ -9,6 +9,7 @@ import Home from '../components/pages/Home';
 import How_It_Works from '../components/pages/How It Works';
 import Start_Fundraiser from '../components/pages/Start_Fundraiser';
 import Medical_Treatment from '../components/pages/Medical_Treatment';
+import Footer from '../components/Footer/Footer';
 
 
 function AllRouter() {
@@ -24,6 +25,7 @@ function AllRouter() {
         <Route path='/sign-up' component={SignUp} />
         <Route path='/Medical_Treatment' component={Medical_Treatment} />
       </Switch>
+
     </Router>
   );
 }
