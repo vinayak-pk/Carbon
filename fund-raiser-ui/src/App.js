@@ -1,5 +1,6 @@
 import './App.css';
 import { BrowseFundraiser } from './Components/BrowseFundraiser'
+import { PaymentSimulation }from './Components/PaymentSimulation'
 //import { Link } from 'react-router-dom';
 // const links =[
 //   {
@@ -8,7 +9,7 @@ import { BrowseFundraiser } from './Components/BrowseFundraiser'
 function App() {
   return (
     <div>
-      <BrowseFundraiser/>
+      <PaymentSimulation />
     </div>
   );
 }
