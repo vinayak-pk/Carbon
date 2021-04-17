@@ -1,17 +1,17 @@
 import './App.css';
 import { BrowseFundraiser } from './Components/BrowseFundraiser';
-import { PaymentSimulation }from './Components/PaymentSimulation';
 import React from "react";
+import { Routes } from './Components/Routes';
 //import { Link } from 'react-router-dom';
 // const links =[
 //   {
 //     title:'Browse Fundraiser',
 // to:'browserfunding'}]
 function App() {
-  
-  const [openPaymentModal, setOpenPaymentModal] = React.useState(false);
   return (
-    openPaymentModal?
+    <>
+    <Routes/>
+    {/* {openPaymentModal?
     (<div>
       <BrowseFundraiser  openPaymentModal = {openPaymentModal} setOpenPaymentModal = {setOpenPaymentModal}/>
       <PaymentSimulation openPaymentModal = {openPaymentModal} setOpenPaymentModal = {setOpenPaymentModal}/>
@@ -19,7 +19,11 @@ function App() {
       (<div>
         <BrowseFundraiser  openPaymentModal = {openPaymentModal} setOpenPaymentModal = {setOpenPaymentModal}/>
       </div>)  
-  );
+} */}
+</>
+  )
+  
+ 
 }
 
 export default App;

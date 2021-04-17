@@ -1,9 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link ,useParams} from "react-router-dom";
 import {DisplayCard, SideBar, SideBarItem, BannerItem} from "./StyledBasicComponents";
 import '../index.css';
 import styled from "styled-components";
 import axios from 'axios';
+import { PaymentSimulation }from './PaymentSimulation';
 
 const StyledLink = styled(Link)`
 text-decoration : none;
@@ -12,9 +13,9 @@ color:#444;
     color: #01bfbd;
     font-weight:700;
 }`;
-const SideBarItemsList = ['All Categories', 'Medical', 'Women & Girls', 'Animals', 'Creative', 'Food & Hunger', 
-'Environment', 'Children', 'Memorial', 'Community Development', 'Others'];
-const LinkedSideBarItems = SideBarItemsList.map((item) => (<StyledLink to = {item}>{item}</StyledLink>))
+const SideBarItemsList = [{name:'All Categories',value:""}, {name:'Medical',value:"medical"}, {name:'Women & Girls',value:"women"}, {name:'Animals',value:"animals"}, {name:'Creative',value:"creative"}, {name:'Food & Hunger',value:"food"}, 
+{name:'Environment',value:"environment"}, {name:'Children',value:'children'}, {name:'Memorial',value:"memorial"}, {name:'Community Development',value:"community"}, {name:"Others",value:'others'}];;
+const LinkedSideBarItems = SideBarItemsList.map((item) => (<StyledLink to ={`/fundraisers/category/${item.value}`}>{item.name}</StyledLink>))
 const HeaderDiv = styled.div`
 background-image : url('https://www.ketto.org/new/browse-banner.9d14784ddc352882b9bd.png');
 background-repeat: no-repeat;
@@ -47,8 +48,9 @@ display: flex;
 align-items: center;
 margin-bottom:40vh;`
 
-export const BrowseFundraiser = ({openPaymentModal, setOpenPaymentModal}) => {
+export const BrowseFundraiser = () => {
     const [fundRaisers, setFundRaisers] = React.useState([]);
+    const [openPaymentModal, setOpenPaymentModal] = React.useState(false);
     const getData = () => {
         axios.get("https://carbon-c9c2b-default-rtdb.firebaseio.com/fund_data.json")
         .then((res) => {
@@ -73,7 +75,16 @@ export const BrowseFundraiser = ({openPaymentModal, setOpenPaymentModal}) => {
         getData();
     }, []);
     console.log('Fund raiser',fundRaisers);
-    return (
+    let {val} = useParams();
+    console.log(val);
+    let filtered = [];
+    if(val){
+        filtered = fundRaisers?.filter((el)=> el.category===val);
+    }else{
+        filtered = fundRaisers;
+    }
+    return openPaymentModal?(
+    <> 
     <div>
     <HeaderDiv>
         <HeaderTitle>Browse Fundraisers</HeaderTitle>
@@ -99,7 +110,7 @@ export const BrowseFundraiser = ({openPaymentModal, setOpenPaymentModal}) => {
             </SideBar>
     </div>
     <div style = {{width : "70vw", height:"100vh", float:"left", margin:"auto"}}> 
-        {fundRaisers?.map((item, i) => (
+        {filtered?.map((item, i) => (
             <DisplayCard title = {item.title}
             imageURL = {item.profile_image}
             AuthorName = {item.first_name + " " + item.last_name}
@@ -113,5 +124,46 @@ export const BrowseFundraiser = ({openPaymentModal, setOpenPaymentModal}) => {
             setOpenPaymentModal = {setOpenPaymentModal}
             openPaymentModal = {openPaymentModal} />))}
     </div>
-    </div>)
+    </div>
+     <PaymentSimulation openPaymentModal = {openPaymentModal} setOpenPaymentModal = {setOpenPaymentModal}/>
+     </>): <div>
+    <HeaderDiv>
+        <HeaderTitle>Browse Fundraisers</HeaderTitle>
+        <HeaderSubTitle>
+            Choose from <span style = {{fontWeight: "600"}}>1,50,256</span> fundraisers to support
+        </HeaderSubTitle>
+        <HeaderBanner>
+            <BannerItem />
+            <BannerItem 
+            imgUrl = "https://ketto.gumlet.io/assets/images/browse-campaign/raised.png"
+            summaryHeader = "₹1100 Crs+"
+            summarySubHeader = "SUCCESSFULLY RAISED"/>
+            <BannerItem 
+            imgUrl = "https://ketto.gumlet.io/assets/images/browse-campaign/donors.png"
+            summaryHeader = "55 Lakh+"
+            summarySubHeader = 'DONORS FROM AROUND THE WORLD'/>
+        </HeaderBanner>
+    </HeaderDiv>
+
+    <div style = {{float:"left"}}>
+        <SideBar>
+            <SideBarItem children = {LinkedSideBarItems}/>
+            </SideBar>
+    </div>
+    <div style = {{width : "70vw", height:"100vh", float:"left", margin:"auto"}}> 
+        {filtered?.map((item, i) => (
+            <DisplayCard title = {item.title}
+            imageURL = {item.profile_image}
+            AuthorName = {item.first_name + " " + item.last_name}
+            raisedValue = {item.curr_donation}
+            achievedPercent = {Math.floor((item.donation_goal - item.curr_donation)/(item.donation_goal) * 100)}
+            lastDonation = {Math.floor(Math.random() * 23)}
+            daysLeft = {getDaysLeft(item.due_date)}
+            supportersCount = {item.supporters} 
+            id = {i} 
+            key = {item.id} 
+            setOpenPaymentModal = {setOpenPaymentModal}
+            openPaymentModal = {openPaymentModal} />))}
+    </div>
+    </div>
 }

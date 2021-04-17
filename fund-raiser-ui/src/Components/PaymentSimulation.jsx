@@ -12,6 +12,7 @@ import {
     ProceedToPayButton,
     PayButton, 
 Spinner} from './StyledBasicComponents';
+import axios from "axios"
 
 export const PaymentSimulation = ({openPaymentModal, setOpenPaymentModal}) => {
     const [paymentProcess, setPaymentProcess] = React.useState(false);
@@ -26,6 +27,12 @@ export const PaymentSimulation = ({openPaymentModal, setOpenPaymentModal}) => {
         else {
             alert('Form filled improperly');
         }
+    }
+    if(paymentProcess){
+        setInterval(()=>{
+            setOpenPaymentModal(false);
+            setPaymentProcess(false);
+        },5000)
     }
     const handleChange = (e) => {
         //console.log(e.target.value)
