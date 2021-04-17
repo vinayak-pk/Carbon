@@ -1,9 +1,9 @@
-import { REQUEST_SUCCESS,REQUEST_FAIL,NETWORK_REQUEST} from "./layoutactiontype"
+import { REQUEST_SUCCESS,REQUEST_FAIL,NETWORK_REQUEST, DONATION_SUCCESS} from "./layoutactiontype"
 
 let initVal = {
     data:[],
     isLoading:false,
-    isError:false
+    isError:false,
 }
 export const layoutreducer = (state=initVal,{type,payload})=>{
     switch(type){
@@ -20,6 +20,11 @@ export const layoutreducer = (state=initVal,{type,payload})=>{
         case REQUEST_FAIL :{
             return{
                 ...state,isLoading:false,isError:true
+            }
+        }
+        case DONATION_SUCCESS:{
+            return{
+                ...state,isLoading:false,
             }
         }
         default:{

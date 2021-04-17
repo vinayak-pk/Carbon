@@ -5,6 +5,7 @@ import { Navbar } from "./Navbar"
 // import { Stickynav } from './stickynav';
 import styled from "styled-components"
 import {ProgressBar} from "./ProgressBar" 
+import { Topdonors } from "./Leaderboard";
 let Layoutbody = styled.div`
 width:80%;
 margin:auto;
@@ -77,16 +78,18 @@ let Infocard = styled.div`
 width:100%;
 height:80px;
 border:1px solid lightgray;
+margin-top:20px;
 display:flex;
 `
 
-let Namcont = styled.div`
+export let Namcont = styled.div`
 border-radius:50px;
 background:lightgray;
 padding:10px;
 height:20px;
 margin-top:20px;
 color:rgba(0,190,189,255);
+margin-left:15px;
 `
 export function Layout(){
     let [state,setState]=React.useState(false);
@@ -129,7 +132,7 @@ export function Layout(){
     if(state){
         dueDate = getDaysLeft();
     }
-    let nameApp = ()=>{
+     let nameApp = ()=>{
         let f = data.first_name.slice(0,1);
         let l = data.last_name.slice(0,1);
         return f + l;
@@ -163,9 +166,10 @@ export function Layout(){
                             {state&&nameApp()}
                         </Namcont>
                         <div>
-                            <p>Campaigner & Beneficiar <br/> Jasper Paul</p>
+                            <p style={{fontWeight:"bold", fontSize:"12px",color:"rgba(73,72,73,255)",margin:"25px 35px 0px "}}>Campaigner & Beneficiar <br/><span style={{color:"rgba(74,162,234,255)"}}>{data.first_name} {data.last_name} <span style={{marginTop:"10px"}}><img width="60px" style={{marginTop:"5px"}} src="https://ketto.gumlet.io/assets/images/verifiednew.png?dpr=1.0&q=70&w=160" alt=""/></span></span></p>
                         </div>
                     </Infocard>
+                    <Topdonors state={state}/>
                 </Sidebox>
             </div>
         </Layoutbody>

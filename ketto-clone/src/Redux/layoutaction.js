@@ -1,5 +1,5 @@
 import axios from "axios"
-import { REQUEST_SUCCESS,REQUEST_FAIL,NETWORK_REQUEST} from "./layoutactiontype"
+import { REQUEST_SUCCESS,REQUEST_FAIL,NETWORK_REQUEST,DONATION_SUCCESS} from "./layoutactiontype"
 
 export const requestSuccess=(payload)=>{
     return {
@@ -7,7 +7,12 @@ export const requestSuccess=(payload)=>{
         payload
     }
 }
-
+export const donationSuccess = (payload)=>{
+    return{
+        type:DONATION_SUCCESS,
+        payload
+    }
+}
 export const networkRequest = ()=>{
     return{
         type:NETWORK_REQUEST
@@ -29,4 +34,11 @@ export const getData = (params)=>(dispatch)=>{
        console.log(err);
        dispatch(requestFail());
    })
+}
+
+export const getDonation = (params) => (dispatch)=>{
+    dispatch(networkRequest())
+    return axios.get('https://carbon-c9c2b-default-rtdb.firebaseio.com/donations.json').then((res)=>{
+        dispatch(donationSuccess(res.data))
+    })
 }
