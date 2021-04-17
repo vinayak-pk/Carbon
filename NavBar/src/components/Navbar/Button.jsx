@@ -15,7 +15,7 @@ function Button({ currentUser }) {
     auth
       .signInWithEmailAndPassword(email, password)
 
-      .then((user) => console.log(user))
+      .then((user) =>  alert("User Logged In Sucessfully !"))
       .catch((err) => console.log(err));
   };
 
