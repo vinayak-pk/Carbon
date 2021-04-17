@@ -25,11 +25,25 @@ import why_ketto8 from '../../images/why_ketto8.png'
 import call_to_action1 from '../../images/call_to_action1.png'
 import call_to_action2 from '../../images/call_to_action2.png'
 import success_story1 from '../../images/success_story1.jpg'
+import { useHistory } from 'react-router-dom';
 
 import './Home_Css.css'
-import Footer from '../Footer/Footer';
+import {Footer} from '../Footer/Footer';
+import { Home_Display_Cards } from './Home_Display_Cards';
+
 
 export default function Home() {
+  let history = useHistory();
+
+  const redirect = () => {
+    history.push('/start_fundraiser')
+  }
+
+  
+  const redirect1 = () => {
+    history.push('/how_it_works')
+  }
+
   return (
     <>
       {/* <h1 className='home'>EPIC</h1> */}
@@ -61,20 +75,34 @@ export default function Home() {
               <div style={{ width: "80%", height: "30%" }}>
                 <p class="home_fontmanage">Ketto’s
                 <span className='home_fontmanage1'> 0% </span> <span className="home_fontmanage2"> Platform fees</span> ensures maximum funds for you</p>
-                <button className='home_button'>Start a Fundraiser for FREE</button>
+                <button onClick={redirect} className='home_button'>Start a Fundraiser for FREE</button>
                 <br />
                 <a className="home_fontmanage3" href="#">नि: शुल्क फंडरेजर शुरू करें</a>
               </div>
             </div>
           </div>
         </section>
-        {/* <section>
-          <div>
-            <h1>
+        
+        <section>
+          <div style={{ height:"650px", color:"#444", textAlign:"center",marginTop:"50px"}}>
+            <h1 style={{ fontSize:"32px"}}> 
               Trending Fundraisers
-          </h1>
+            </h1>
+
+            <p style={{ textAlign:"center"}}>
+              View the fundraisers that are most active right now
+            </p>
+
+            <div style={{width:"95%", margin:"auto"}}>
+            {/* <DisplayCard/> */}
+            <Home_Display_Cards/>
+
+            {/* <BrowseFundraiser/> */}
+            </div>
+
+            
           </div>
-        </section> */}
+        </section> 
 
         <section>
           <div>
@@ -111,8 +139,8 @@ export default function Home() {
 
           </div>
           <div className='home_button_css'>
-            <button className='home_button'>Start a Fundraiser for FREE</button>
-            <button className='home_button11'>TALK TO US</button>
+            <button onClick={redirect} className='home_button'>Start a Fundraiser for FREE</button>
+            <button onClick={redirect1} className='home_button11'>TALK TO US</button>
           </div>
           <div className='home_button_css'>
             <div className='home_button_css3'>Have any questions for us? Chat with our team on WhatsApp Now</div>
@@ -120,6 +148,8 @@ export default function Home() {
 
           </div>
         </section>
+
+
         <section>
           <div>
             <div className='home_middle'>Causes you can raise funds for</div>
@@ -218,7 +248,7 @@ the project that you want to raise funds for.</div>
               </div>
               <div style={{ margin: "40px" }}>
                 <p style={{ fontSize: "20px" }}>Ketto is gearing up to set the world record by curating the largest <span style={{ fontWeight: "bold" }}>#LibraryOfDistractions</span> stories. And you can become a part of this. Are you ready to help set a #worldrecord?</p>
-                <button style={{ marginLeft: "5px" }} className='home_button11'>Let's Start</button>
+                <button onClick={redirect} style={{ marginLeft: "5px" }} className='home_button11'>Let's Start</button>
 
               </div>
             </div>
@@ -366,7 +396,7 @@ the project that you want to raise funds for.</div>
               <div className="getdemo_block2">
               Launch your next fundraiser in minutes
               <p style={{fontSize:"16px",fontWeight:"500"}}>Start your fundraiser on Ketto and be ready to get your first donation in minutes.</p>
-              <button className='home_button'>Start a Fundraiser for FREE</button>
+              <button onClick={redirect} className='home_button'>Start a Fundraiser for FREE</button>
 
               </div>
 
@@ -374,7 +404,7 @@ the project that you want to raise funds for.</div>
 
             
           </div>
-
+          <Footer/>
         </section>
       </div>
     </>
