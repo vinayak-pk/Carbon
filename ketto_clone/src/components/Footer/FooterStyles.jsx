@@ -1,14 +1,13 @@
 import styled from 'styled-components';
 
 export const Box = styled.div`
-padding: 80px 60px;
 background: #063c3b;
 bottom: 0;
 width: 100%;
 
 
 @media (max-width: 1000px) {
-	padding: 70px 30px;
+	padding: 50px 30px;
 }
 `;
 
@@ -25,14 +24,14 @@ export const Column = styled.div`
 display: flex;
 flex-direction: column;
 text-align: left;
-margin-left: 60px;
+margin-left: 10px;
 `;
 
 export const Row = styled.div`
 display: grid;
 grid-template-columns: repeat(auto-fill,
 						minmax(185px, 1fr));
-grid-gap: 20px;
+grid-gap: 15px;
 
 @media (max-width: 1000px) {
 	grid-template-columns: repeat(auto-fill,
