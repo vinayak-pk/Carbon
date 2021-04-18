@@ -25,7 +25,7 @@ export const requestFail = ()=>{
 }
 
 export const getData = (params)=>(dispatch)=>{
-    let id = 0
+    let id = 0;
     dispatch(networkRequest())
  return  axios.get(`https://carbon-c9c2b-default-rtdb.firebaseio.com/fund_data/${id}.json`).then((res)=>{
        console.log(res.data)

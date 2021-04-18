@@ -18,6 +18,8 @@
  
   .navigation{
      width: 100%;
+     display: flex;
+     border-bottom: 3px solid lightgray;
   }
   .navgiation a{
       margin: 2%;

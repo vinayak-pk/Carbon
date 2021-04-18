@@ -2,15 +2,16 @@ import React, { useEffect } from "react"
 import { useSelector ,useDispatch, shallowEqual} from "react-redux";
 import { getData } from "../../Redux/layoutaction";
 import { Navbar } from "./Navbar"
-// import { Stickynav } from './stickynav';
+import { Stickynav } from './stickynav';
 import styled from "styled-components"
 import {ProgressBar} from "./ProgressBar" 
 import { Topdonors } from "./Leaderboard";
+import StickyNavBar from './StickyNavbar';
 let Layoutbody = styled.div`
 width:80%;
 margin:auto;
-min-height:500px;
-border:1px solid black;
+min-height:400vh;
+box-shadow:0 1px 1px 0 hsla(0, 0%, 0%, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.19);
 `
 let Loader = styled.h1`
 text-align:center;`
@@ -18,11 +19,11 @@ text-align:center;`
 let Blog = styled.div`
 width:65%;
 min-height:600px;
-border:1px solid black;`
+`
 
 let Imgbody = styled.div`
 width:100%;
-height:350px;
+height:420px;
 text-align:center;
 box-shadow: 0px -10px 20px #8b8b8b inset;
 `
@@ -91,7 +92,25 @@ margin-top:20px;
 color:rgba(0,190,189,255);
 margin-left:15px;
 `
+export let Sharebut = styled.button`
+width:30%;
+height:45px;
+font-size:15px;
+font-weight:500;
+color:rgba(0,190,189,255);
+margin-top:30px;
+margin-left:65%;
+border:1px solid lightgrey;
+outline:none;
+background:white;
+box-shadow:0 2px 4px 0 rgba(0, 0, 0, 0.075), 0 3px 5px 0 rgba(0, 0, 0, 0.19);
+&&:hover{
+    background:rgba(0,190,189,255);
+    color:white;
+}
+`
 export function Layout(){
+    const [scrolling, setScrolling] = React.useState(false);
     let [state,setState]=React.useState(false);
     let data = useSelector(state=>state.layout.data);
     let isLoading = useSelector(state=>state.layout.isLoading);
@@ -137,26 +156,37 @@ export function Layout(){
         let l = data.last_name.slice(0,1);
         return f + l;
     }
-
+    const handleScroll = () => {
+        if (window.pageYOffset >= 550) {
+          setScrolling(true);
+        } else {
+          setScrolling(false);
+        }
+      };
+      useEffect(() => {
+        window.addEventListener("scroll", handleScroll);
+        return () => window.addEventListener("scroll", handleScroll);
+      });
     return isLoading?<Loader>...Loading</Loader>:isError?<Loader>...Error</Loader>:(
         <>
          <div>
+         {/* {scrolling&&<StickyNavBar scrolling={scrolling}/>} */}
                 <Navbar/>
         </div>
         <Layoutbody>
             <h1 style={{textAlign:"center",color:"rgba(73,72,73,255)"}}>{data.title}</h1>
             <div style={{display:"flex",gap:"30px"}}>
                 <Blog>
-                    <Imgbody>
-                        <img style={{width:"100%"}} src={data.blog_img} alt=""/>
-                    </Imgbody>
+                    <Imgbody style={{backgroundImage:`url(${data.blog_img})`}}/>
+                    <Sharebut><i className="fa fa-share-alt" style={{marginRight:"10px"}}></i>Share this FundRaiser</Sharebut>
                     <div>
-                        {/* <Stickynav/> */}
+                        <Stickynav/>
                     </div>
+
                 </Blog>
                 <Sidebox>
-                    <Contribute>CONTRIBUTE NOW</Contribute>
-                    <Share>Spread the word</Share>
+                    <Contribute><i style={{marginRight:"5px"}} className="fa fa-heart"></i>CONTRIBUTE NOW</Contribute>
+                    <Share><i style={{marginRight:"5px"}} className="fa fa-facebook-square"></i>Spread the word</Share>
                     <Pre>₹ {curDonation}</Pre>
                     <p style={{color:"rgba(73,72,73,255)",margin:"2px 0px",marginBottom:"10px"}}>raised of <span style={{fontSize:"18px",color:"black"}}>₹ {donationGoal}</span> goal</p>
                     <ProgressBar sliderColor = "#01bfbd" completed ={achievedPercent}/>
