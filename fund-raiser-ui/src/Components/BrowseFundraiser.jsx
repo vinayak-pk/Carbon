@@ -1,73 +1,41 @@
 import React from "react";
-import { Link ,useParams} from "react-router-dom";
-import {DisplayCard, SideBar, SideBarItem, BannerItem, SmallSpinner} from "./StyledBasicComponents";
+import {useParams} from "react-router-dom";
+import {DisplayCard,  SmallSpinner, SideBar, SideBarItem} from "team-carbon-ui";
+import { BannerItem, HeaderBanner, HeaderTitle, HeaderDiv, HeaderSubTitle, 
+    StyledLink} from './StyledBasicComponents';
 import '../index.css';
-import styled from "styled-components";
-import axios from 'axios';
 import { PaymentSimulation }from './PaymentSimulation';
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { getFundRaisers, setOpenPaymentModal } from '../Redux/FundRaiserUI/action';
+import styles from "./EssentialAlignment.module.css"
 
-const StyledLink = styled(Link)`
-text-decoration : none;
-color:#444;
-&:focus{
-    color: #01bfbd;
-    font-weight:700;
-}`;
-const SideBarItemsList = [{name:'All Categories',value:""}, {name:'Medical',value:"medical"}, {name:'Women & Girls',value:"women"}, {name:'Animals',value:"animals"}, {name:'Creative',value:"creative"}, {name:'Food & Hunger',value:"food"}, 
-{name:'Environment',value:"environment"}, {name:'Children',value:'children'}, {name:'Memorial',value:"memorial"}, {name:'Community Development',value:"community"}, {name:"Others",value:'others'}];;
-const LinkedSideBarItems = SideBarItemsList.map((item) => (<StyledLink to ={`/fundraisers/category/${item.value}`}>{item.name}</StyledLink>))
-const HeaderDiv = styled.div`
-background-image : url('https://www.ketto.org/new/browse-banner.9d14784ddc352882b9bd.png');
-background-repeat: no-repeat;
-background-size: auto;
-height:60vh;
-margin-bottom:20px;`
-const HeaderTitle = styled.div`
-font-weight: 700;
-font-size: 72px;
-text-align: center;
-color: #fff;
-margin:auto;
-padding-top:80px;`
-const HeaderSubTitle = styled.div`
-line-height: 45px;
-font-size: 36px;
-text-align: center;
-color: #fff;`
+const SideBarItemsList = [
+    {name:'All Categories',value:""},
+     {name:'Medical',value:"medical"}, 
+     {name:'Women & Girls',value:"women"}, 
+     {name:'Animals',value:"animals"}, 
+     {name:'Creative',value:"creative"}, 
+     {name:'Food & Hunger',value:"food"}, 
+{name:'Environment',value:"environment"},
+ {name:'Children',value:'children'},
+  {name:'Memorial',value:"memorial"}, 
+  {name:'Community Development',value:"community"},
+   {name:"Others",value:'others'}];
 
-const HeaderBanner = styled.div`
-background: rgba(0,0,0,.7);
-height: 88px;
-width: 100%;
-position: absolute;
-bottom: 0;
-margin:0;
-display: -ms-flexbox;
-display: flex;
--ms-flex-align: center;
-align-items: center;
-margin-bottom:40vh;`
+const LinkedSideBarItems = SideBarItemsList.map((item) => (
+<StyledLink to ={`/fundraisers/category/${item.value}`}>{item.name}</StyledLink>))
 
 export const BrowseFundraiser = () => {
-    // const [fundRaisers, setFundRaisers] = React.useState([]);
-    // const [openPaymentModal, setOpenPaymentModal] = React.useState(false);
-    // const [isLoading, setIsLoading] = React.useState(false);
     const { isLoading, fundRaiser, openPaymentModal, isError } = useSelector(state => state.fundRaiser, shallowEqual);
     const dispatch = useDispatch();
     const getData = () => {
         dispatch(getFundRaisers());
     }
+
     const toggleOpenPaymentModal = () => {
         dispatch(setOpenPaymentModal());
     }
-    // const getData = () => {
-    //     axios.get("https://carbon-c9c2b-default-rtdb.firebaseio.com/fund_data.json")
-    //     .then((res) => {
-    //         setFundRaisers(res.data);
-    //     })
-    // }
+
     const getDaysLeft = (addDate) => {
         let addDateComponents = addDate.split('/').map(Number);
         console.log(addDateComponents);
@@ -81,11 +49,12 @@ export const BrowseFundraiser = () => {
         daysRemaining = daysRemaining < 0 ?(daysRemaining*-1) : daysRemaining;
         return daysRemaining;
     }
+
     React.useEffect(() => {
         console.log('Here');
         getData();
-    }, [dispatch]);
-    console.log('Fund raiser',fundRaiser);
+    }, []);
+
     let {val} = useParams();
     console.log(val);
     let filtered = [];
@@ -120,7 +89,7 @@ export const BrowseFundraiser = () => {
             <SideBarItem children = {LinkedSideBarItems}/>
             </SideBar>
     </div>
-    <div style = {{width : "70vw", height:"100vh", float:"left", margin:"auto"}}> 
+    <div className = {styles.alignment1}> 
         {filtered?.map((item, i) => (
             <DisplayCard title = {item.title}
             imageURL = {item.profile_image}
@@ -159,9 +128,9 @@ export const BrowseFundraiser = () => {
     <div style = {{float:"left"}}>
         <SideBar>
             <SideBarItem children = {LinkedSideBarItems}/>
-            </SideBar>
+        </SideBar>
     </div>
-    <div style = {{width : "70vw", height:"100vh", float:"left", margin:"auto"}}> 
+    <div className= {styles.alignment2}> 
        {isLoading ?<SmallSpinner/>:(filtered?.map((item, i) => (
             <DisplayCard title = {item.title}
             imageURL = {item.profile_image}

@@ -1,20 +1,20 @@
 import React from "react";
 import { 
-    ModalBox,
-     ModalBodyDiv, 
-     ModalHeader, 
-     CloseSpan,
-    ModalTextDiv, 
-    ModalFooter,
-    ModalButton, 
-    StyledLabel,
-    StyledInput,
     ProceedToPayButton,
-    PayButton, 
-Spinner} from './StyledBasicComponents';
-import axios from "axios";
+    PayButton,
+    ModalBox,
+    ModalBodyDiv, 
+    ModalHeader, 
+    ModalButton, 
+    Spinner} from "team-carbon-ui";
+
+import { 
+    StyledLabel,
+    StyledInput} from './StyledBasicComponents';
+
 import { updateFundRaisers } from '../Redux/FundRaiserUI/action';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import styles from './EssentialAlignment.module.css';
 
 export const PaymentSimulation = ({openPaymentModal, toggleOpenPaymentModal}) => {
     const [paymentProcess, setPaymentProcess] = React.useState(false);
@@ -37,7 +37,6 @@ export const PaymentSimulation = ({openPaymentModal, toggleOpenPaymentModal}) =>
         },5000)
     }
     const handleChange = (e) => {
-        //console.log(e.target.value)
         setFormData({
             ...FormData,
             [e.target.name]: e.target.value
@@ -58,21 +57,14 @@ export const PaymentSimulation = ({openPaymentModal, toggleOpenPaymentModal}) =>
         (paymentProcess?(<ModalBox>
             <ModalBodyDiv>
                 <br /><br/>
-                <h1 style = {{color:"#01bfbd", transition:"1s", textAlign:"center"}}>Processing Payment...</h1>
+                <h1 className = {styles.alignment3}>Processing Payment...</h1>
                 <br/><br/>
                 <Spinner></Spinner>
             </ModalBodyDiv>
         </ModalBox>):
         <ModalBox><ModalBodyDiv>
                 <ModalHeader>
-                    <span style = {{float:"left", 
-                    textAlign:"center", 
-                    fontSize:"30px", 
-                    padding:"2px",
-                    margin:"0px",
-                    marginBottom:"5px",
-                    paddingBottom:"20px",
-                    cursor:"pointer"}}
+                    <span className = {styles.alignment4}
                     onClick = {() => {evaluateEntries()}}>
                     &times;
                     </span>Please enter your payment details
@@ -122,14 +114,7 @@ export const PaymentSimulation = ({openPaymentModal, toggleOpenPaymentModal}) =>
         <ModalBox>
             <ModalBodyDiv>
                 <ModalHeader>
-                    <span style = {{float:"left", 
-                    textAlign:"center", 
-                    fontSize:"30px", 
-                    padding:"2px",
-                    margin:"0px",
-                    marginBottom:"5px",
-                    paddingBottom:"20px",
-                    cursor:"pointer"}}
+                    <span className = {styles.alignment4}
                     onClick = {() => {
                         toggleOpenPaymentModal()}}>
                     &times;
@@ -145,17 +130,7 @@ export const PaymentSimulation = ({openPaymentModal, toggleOpenPaymentModal}) =>
                         <input type = "number"
                         value = {paymentAmount}
                         onChange = {(e) => {setPaymentAmount(e.target.value)}} 
-                        style = {{
-                            height:"40px", 
-                            width:"150px",
-                            borderRadius:"20px",
-                            border:"0",
-                            boxShadow: "0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19)",
-                            outline: "none",
-                            textAlign:"center",
-                            color : "#444444",
-                            fontSize:"15px"
-                        }}/>
+                        className = {styles.alignment5}/>
                         </span>
                         <br /> <br />
                         <div style = {{marginLeft:"20px"}}>
