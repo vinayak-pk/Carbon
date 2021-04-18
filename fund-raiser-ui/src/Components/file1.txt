@@ -1,1 +1,0 @@
-This file is made to render this directory on github, can be removed when we keep some other files in the folder

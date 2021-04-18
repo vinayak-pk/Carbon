@@ -78,7 +78,7 @@ export const DisplayCard = ({
  supportersCount = 13997,
     id,
 openPaymentModal,
-setOpenPaymentModal})=> {
+toggleOpenPaymentModal})=> {
         const extractFirstLetter = (AuthorName) =>{
             let splitNames = AuthorName.split(" ");
             return splitNames[0][0] + splitNames[1][0];
@@ -87,7 +87,7 @@ setOpenPaymentModal})=> {
             achievedPercent = 100;
         }
     return (
-        <CardContainer onClick = {() => {setOpenPaymentModal(!openPaymentModal)}}>
+        <CardContainer onClick = {() => {toggleOpenPaymentModal()}}>
             <img src = {imageURL} width = "100%" height = "170px" alt = {title}
             style = {{ borderRadius: "20px" }}/>
             <CardTitle>{title}</CardTitle>
@@ -288,6 +288,22 @@ export const Spinner = styled.div`
   background: transparent;
   width: 100px;
   height: 100px;
+  border-radius: 50%;
+  margin:auto;
+  margin-top:20px;
+`;
+
+export const SmallSpinner = styled.div`
+  animation: ${rotate360} 2s linear infinite;
+  transform: translateZ(0);
+
+  border-top: 2px solid #b2eceb;
+  border-right: 2px solid #b2eceb;
+  border-bottom: 2px solid #b2eceb;
+  border-left: 4px solid #01bfbd;
+  background: transparent;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   margin:auto;
   margin-top:20px;

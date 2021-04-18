@@ -1,10 +1,12 @@
 import React from "react";
 import { Link ,useParams} from "react-router-dom";
-import {DisplayCard, SideBar, SideBarItem, BannerItem} from "./StyledBasicComponents";
+import {DisplayCard, SideBar, SideBarItem, BannerItem, SmallSpinner} from "./StyledBasicComponents";
 import '../index.css';
 import styled from "styled-components";
 import axios from 'axios';
 import { PaymentSimulation }from './PaymentSimulation';
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
+import { getFundRaisers, setOpenPaymentModal } from '../Redux/FundRaiserUI/action';
 
 const StyledLink = styled(Link)`
 text-decoration : none;
@@ -49,14 +51,23 @@ align-items: center;
 margin-bottom:40vh;`
 
 export const BrowseFundraiser = () => {
-    const [fundRaisers, setFundRaisers] = React.useState([]);
-    const [openPaymentModal, setOpenPaymentModal] = React.useState(false);
+    // const [fundRaisers, setFundRaisers] = React.useState([]);
+    // const [openPaymentModal, setOpenPaymentModal] = React.useState(false);
+    // const [isLoading, setIsLoading] = React.useState(false);
+    const { isLoading, fundRaiser, openPaymentModal, isError } = useSelector(state => state.fundRaiser, shallowEqual);
+    const dispatch = useDispatch();
     const getData = () => {
-        axios.get("https://carbon-c9c2b-default-rtdb.firebaseio.com/fund_data.json")
-        .then((res) => {
-            setFundRaisers(res.data);
-        })
+        dispatch(getFundRaisers());
     }
+    const toggleOpenPaymentModal = () => {
+        dispatch(setOpenPaymentModal());
+    }
+    // const getData = () => {
+    //     axios.get("https://carbon-c9c2b-default-rtdb.firebaseio.com/fund_data.json")
+    //     .then((res) => {
+    //         setFundRaisers(res.data);
+    //     })
+    // }
     const getDaysLeft = (addDate) => {
         let addDateComponents = addDate.split('/').map(Number);
         console.log(addDateComponents);
@@ -73,15 +84,15 @@ export const BrowseFundraiser = () => {
     React.useEffect(() => {
         console.log('Here');
         getData();
-    }, []);
-    console.log('Fund raiser',fundRaisers);
+    }, [dispatch]);
+    console.log('Fund raiser',fundRaiser);
     let {val} = useParams();
     console.log(val);
     let filtered = [];
     if(val){
-        filtered = fundRaisers?.filter((el)=> el.category===val);
+        filtered = fundRaiser?.filter((el)=> el.category===val);
     }else{
-        filtered = fundRaisers;
+        filtered = fundRaiser;
     }
     return openPaymentModal?(
     <> 
@@ -121,11 +132,11 @@ export const BrowseFundraiser = () => {
             supportersCount = {item.supporters} 
             id = {i} 
             key = {item.id} 
-            setOpenPaymentModal = {setOpenPaymentModal}
+            toggleOpenPaymentModal = {toggleOpenPaymentModal}
             openPaymentModal = {openPaymentModal} />))}
     </div>
     </div>
-     <PaymentSimulation openPaymentModal = {openPaymentModal} setOpenPaymentModal = {setOpenPaymentModal}/>
+     <PaymentSimulation openPaymentModal = {openPaymentModal} toggleOpenPaymentModal = {toggleOpenPaymentModal}/>
      </>): <div>
     <HeaderDiv>
         <HeaderTitle>Browse Fundraisers</HeaderTitle>
@@ -151,7 +162,7 @@ export const BrowseFundraiser = () => {
             </SideBar>
     </div>
     <div style = {{width : "70vw", height:"100vh", float:"left", margin:"auto"}}> 
-        {filtered?.map((item, i) => (
+       {filtered?.map((item, i) => (
             <DisplayCard title = {item.title}
             imageURL = {item.profile_image}
             AuthorName = {item.first_name + " " + item.last_name}
@@ -162,7 +173,7 @@ export const BrowseFundraiser = () => {
             supportersCount = {item.supporters} 
             id = {i} 
             key = {item.id} 
-            setOpenPaymentModal = {setOpenPaymentModal}
+            toggleOpenPaymentModal = {toggleOpenPaymentModal}
             openPaymentModal = {openPaymentModal} />))}
     </div>
     </div>

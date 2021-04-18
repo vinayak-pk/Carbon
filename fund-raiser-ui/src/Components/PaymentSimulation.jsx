@@ -12,9 +12,11 @@ import {
     ProceedToPayButton,
     PayButton, 
 Spinner} from './StyledBasicComponents';
-import axios from "axios"
+import axios from "axios";
+import { updateFundRaisers } from '../Redux/FundRaiserUI/action';
+import { useSelector, useDispatch } from 'react-redux';
 
-export const PaymentSimulation = ({openPaymentModal, setOpenPaymentModal}) => {
+export const PaymentSimulation = ({openPaymentModal, toggleOpenPaymentModal}) => {
     const [paymentProcess, setPaymentProcess] = React.useState(false);
     const [paymentAmount, setPaymentAmount] = React.useState(0);
     const [changeToNext, setChangeToNext] = React.useState(false);
@@ -30,7 +32,7 @@ export const PaymentSimulation = ({openPaymentModal, setOpenPaymentModal}) => {
     }
     if(paymentProcess){
         setInterval(()=>{
-            setOpenPaymentModal(false);
+            toggleOpenPaymentModal(false);
             setPaymentProcess(false);
         },5000)
     }
@@ -46,6 +48,11 @@ export const PaymentSimulation = ({openPaymentModal, setOpenPaymentModal}) => {
             ...paymentData,
             [e.target.name]:e.target.value
         })
+    }
+    const dispatch = useDispatch();
+    const handlePayment = (paymentAmount) => {
+        console.log('Patching server value');
+        dispatch(updateFundRaisers({paidAmount:paymentAmount}));
     }
      return (changeToNext?
         (paymentProcess?(<ModalBox>
@@ -100,7 +107,7 @@ export const PaymentSimulation = ({openPaymentModal, setOpenPaymentModal}) => {
                             </StyledLabel>
             </div>
             <br/><br/>
-        <PayButton onClick = {() => {setPaymentProcess(!paymentProcess)}}>Pay &#8377; {paymentAmount}</PayButton>
+        <PayButton onClick = {() => {handlePayment(paymentAmount)}}>Pay &#8377; {paymentAmount}</PayButton>
         <br/><br/>
         <div style = {{marginLeft : "30%"}}>
         <img src = 'https://mup.manipal.edu/wp-content/uploads/2019/12/payment-method-png-2463x512_e315f6c1.png'
@@ -123,7 +130,8 @@ export const PaymentSimulation = ({openPaymentModal, setOpenPaymentModal}) => {
                     marginBottom:"5px",
                     paddingBottom:"20px",
                     cursor:"pointer"}}
-                    onClick = {() => {setOpenPaymentModal(!openPaymentModal)}}>
+                    onClick = {() => {
+                        toggleOpenPaymentModal()}}>
                     &times;
                     </span>Choose a donation amount
                     </ModalHeader>
