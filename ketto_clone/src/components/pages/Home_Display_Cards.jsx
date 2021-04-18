@@ -41,6 +41,7 @@ function Home_Display_Cards(){
                 supportersCount = {item.supporters} 
                 key = {item.id} 
                  />
+                 
             ))}
             
         </div>
