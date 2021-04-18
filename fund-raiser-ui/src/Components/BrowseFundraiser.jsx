@@ -162,7 +162,7 @@ export const BrowseFundraiser = () => {
             </SideBar>
     </div>
     <div style = {{width : "70vw", height:"100vh", float:"left", margin:"auto"}}> 
-       {filtered?.map((item, i) => (
+       {isLoading ?<SmallSpinner/>:(filtered?.map((item, i) => (
             <DisplayCard title = {item.title}
             imageURL = {item.profile_image}
             AuthorName = {item.first_name + " " + item.last_name}
@@ -174,7 +174,7 @@ export const BrowseFundraiser = () => {
             id = {i} 
             key = {item.id} 
             toggleOpenPaymentModal = {toggleOpenPaymentModal}
-            openPaymentModal = {openPaymentModal} />))}
+            openPaymentModal = {openPaymentModal} />)))}
     </div>
     </div>
 }
