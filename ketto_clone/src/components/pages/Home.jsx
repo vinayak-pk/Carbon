@@ -26,7 +26,6 @@ import call_to_action1 from '../../images/call_to_action1.png'
 import call_to_action2 from '../../images/call_to_action2.png'
 import success_story1 from '../../images/success_story1.jpg'
 import { useHistory } from 'react-router-dom';
-
 import './Home_Css.css'
 import {Footer} from '../Footer/Footer';
 import { Home_Display_Cards } from './Home_Display_Cards';
