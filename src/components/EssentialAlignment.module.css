@@ -1,0 +1,42 @@
+.alignment1 {
+    width : 70vw; 
+    height : 100vh;
+    float : left; 
+    margin : auto;
+}
+
+.alignment2 {
+    width : 70vw; 
+    height:100vh; 
+    float:left; 
+    margin:auto;
+}
+
+.alignment3 {
+    color:#01bfbd; 
+    transition: 1s; 
+    text-align:center;
+}
+
+.alignment4 {
+    float:left; 
+    text-align: center; 
+    font-size: 30px;
+    padding:2px;
+    margin:0px;
+    margin-bottom:5px;
+    padding-bottom:20px;
+    cursor:pointer;
+}
+
+.alignment5 {
+    height:40px; 
+    width:150px;
+    border-radius:20px;
+    border:0;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    outline: none;
+    text-align:center;
+    color : #444444;
+    font-size:15px;
+}
