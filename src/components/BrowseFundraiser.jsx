@@ -9,7 +9,7 @@ import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { getFundRaisers, setOpenPaymentModal } from '../Redux/FundRaiserUI/action';
 import styles from "./EssentialAlignment.module.css"
 import {useHistory} from "react-router-dom"
-import Navbar from "../components/Navbar/Navbar";
+import Navbar from "./Navbar/Navbar";
 const SideBarItemsList = [
     {name:'All Categories',value:""},
      {name:'Medical',value:"medical"}, 
