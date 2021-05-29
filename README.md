@@ -20,6 +20,13 @@
 > ### react-redux ![react-redux](https://img.shields.io/npm/v/react-redux.svg)
 > ### axios ![axios](https://img.shields.io/npm/v/axios.svg)
 > ### create-react-app ![create-react-app](https://img.shields.io/npm/v/create-react-app.svg)
+> ### firebase ![firebase](https://img.shields.io/npm/v/firebase.svg)
+> ### firebase-tools ![firebase-tool](https://img.shields.io/npm/v/firebase-tools.svg)
+> ### redux-thunk ![redux-thunk](https://img.shields.io/npm/v/redux-thunk.svg)
+> ### react-spring ![react-spring](https://img.shields.io/npm/v/react-spring.svg)
+> ### team-carbon-ui ![team-carbon-ui](https://img.shields.io/npm/v/team-carbon-ui.svg)
+> ### styled-components ![styled-components](https://img.shields.io/npm/v/styled-components.svg)
+> ### slick-carousel ![slick-carousel](https://img.shields.io/npm/v/slick-carousel.svg)
 
 ## Hosted Platform
 > https://ketto-clone-kiranjolisa.vercel.app/
