@@ -7,7 +7,6 @@ const StickyNavBar = ({ scrolling }) => {
     console.log('button pressed')
      setBut(num);
   }
-  console.log(scrolling);
   return (
     <div className={scrolling ? "navbar sticky" : "navbar"} id="navbar">
     <Navelements but={but} handleClick={handleClick}/>

@@ -4,7 +4,6 @@ import "./Navbar.css";
 import Dropdown from "./Dropdown";
 import { Link } from "react-router-dom";
 import logo from "../../images/logo.svg";
-// import {FaBars} from 'react-icons/fa'
 
 function Navbar() {
   const [click, setClick] = useState(false);
@@ -33,7 +32,7 @@ function Navbar() {
     <>
       <nav className="navbarM">
         <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
-          <img src={logo} style={{ height: "40px" }} />
+          <img src={logo} style={{ height: "40px" }} alt="Logo"/>
           <i class="fab fa-firstdraft" />
         </Link>
         <div className="menu-icon" onClick={handleClick}>

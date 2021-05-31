@@ -4,7 +4,7 @@ import "./App.css";
 import { connect } from "react-redux";
 import { auth } from "./firebase";
 import AllRouter from "./Routes/AllRoutes";
-import { ChatBot } from './components/pages/Chat';
+import { ChatBot } from './Components/Pages/Chat';
 import { clearCurrentUser, setCurrentUser } from "./Redux/Auth/auth.action";
 Modal.setAppElement("#root");
 

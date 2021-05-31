@@ -3,10 +3,10 @@ import { getlData,savelData } from "./persistData";
 
 
 let user = getlData('user')
-console.log(user)
 const initialState = {
   isAuth:false,
   currentUser: "",
+  uid:"",
   User:user||""
 };
 
@@ -15,7 +15,8 @@ const authReducer = (state = initialState, action) => {
     case authTypes.SET_CURRENT_USER:
       return {
         ...state,
-        currentUser: action.payload,
+        currentUser: action.payload.user,
+        uid:action.payload.uid
       };
       case authTypes.SET_USER:
         savelData('user',action.payload)
@@ -25,7 +26,7 @@ const authReducer = (state = initialState, action) => {
     case authTypes.CLEAR_CURRENT_USER:
       return {
         ...state,
-        currentUser: null,isAuth:false
+        currentUser: null,uid:"",isAuth:false
       };
     default:
       return state;

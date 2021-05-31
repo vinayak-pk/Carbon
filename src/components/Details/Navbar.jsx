@@ -1,4 +1,4 @@
-import react from "react"
+import React from "react"
 import { Link } from "react-router-dom"
 import styles from "./Navbar.module.css"
 import {useHistory} from "react-router-dom"
@@ -18,8 +18,8 @@ export function Navbar(){
                 <button className={styles.dropbtn}>{user[0]}
                 </button>
                 <div className={styles.dropdowncontent}>
-                    <Link href="#">{User}</Link>
-                    <Link href="#">Sign out</Link>
+                    <Link to="/" href="#">{User}</Link>
+                    <Link to="/" href="#">Sign out</Link>
                 </div>
             </div> 
         </div>

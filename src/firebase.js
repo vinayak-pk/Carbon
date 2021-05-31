@@ -16,7 +16,6 @@ firebase.initializeApp(firebaseConfig);
 //'firebaseApp' is declared but its value is never used.
 export const auth = firebase.auth();
 // const provider = new firebase.auth.GoogleAuthProvider();
-
 // export { provider };
 
 export default firebase;

@@ -28,10 +28,8 @@ export const getData = (params)=>(dispatch)=>{
     let id = params;
     dispatch(networkRequest())
  return  axios.get(`https://carbon-c9c2b-default-rtdb.firebaseio.com/fund_data/${id}.json`).then((res)=>{
-       console.log(res.data)
         dispatch(requestSuccess(res.data));
    }).catch((err)=>{
-       console.log(err);
        dispatch(requestFail());
    })
 }

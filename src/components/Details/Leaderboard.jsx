@@ -1,7 +1,6 @@
 import React from "react"
 import { useSelector } from 'react-redux';
 export const Topdonors=({state})=>{
-    console.log(state)
     let data = useSelector(state=>state.layout.data);
     let donations = data;
      function Sort() {

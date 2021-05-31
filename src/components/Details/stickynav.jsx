@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React from "react"
 import styles from "./Sticky.module.css"
 import styled from "styled-components"
 import { About } from "./About";
@@ -8,34 +8,14 @@ import {Comment} from "../Comment_Box/Comment"
 let Button = styled.div`
 padding:2%;
 cursor:pointer;
-&&:active{
+&:active{
   border-bottom:4px solid rgba(0,190,189,255);
 }
 `
 export function Stickynav({id}) {
-    const [scrolled,setScrolled]=React.useState(false);
     const [but,setBut] = React.useState(1);
-    const handleScroll=() => {
-        const offset=window.scrollY;
-        if(offset > 200 ){
-          setScrolled(true);
-        }
-        else{
-          setScrolled(false);
-        }
-      }
-    
-      React.useEffect(() => {
-        window.addEventListener('scroll',handleScroll)
-      });
-
-    let navbarClasses=['navbar'];
-      if(scrolled){
-        navbarClasses.push('scrolled');
-      }
 
       let handleClick =(num)=>{
-        console.log('button pressed')
          setBut(num);
       }
 
@@ -68,7 +48,6 @@ export function Stickynav({id}) {
     curr=but;
   }
       
-  console.log(curr)
     return(
         <div>
           <Navelements but={but} handleClick={handleClick}/>
@@ -83,7 +62,6 @@ export function Stickynav({id}) {
 }
 
 export function Navelements({but,handleClick}) {
-  console.log(but,handleClick)
   return (
     <nav className={styles.navigation}>
     <Button style={but===1?{borderBottom:"3px solid rgba(0,190,189,255)"}:{borderBottom:"0px"}} onClick={()=>handleClick(1)}><i style={{marginRight:"5px",color:"rgba(204,205,205,255)",fontSize:"18px"}} className="fa fa-globe"/>About</Button>

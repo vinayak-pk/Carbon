@@ -23,13 +23,13 @@ const Footer = () => {
 				<Row>
 					<Column>
 						<Heading>
-							<img src={logo_dark_ketto} style={{ height: "40px" }} />
+							<img src={logo_dark_ketto} style={{ height: "40px" }} alt="logo"/>
 							<hr style={{ width: "100%",marginBottom:"0px" ,margin: "5px auto", color: "rgb(53, 53, 53)" }} />
 
 						</Heading>
 
 						<FooterLink style={{marginTop:"-25px"}} href="#">
-						<img src={fb_logo} style={{height: "45px" }} />
+						<img src={fb_logo} style={{height: "45px" }} alt="fb_logo"/>
 						</FooterLink>
 
 						<div>

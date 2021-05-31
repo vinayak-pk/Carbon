@@ -1,12 +1,11 @@
 import React, { useEffect } from "react"
-import { useSelector ,useDispatch, shallowEqual} from "react-redux";
+import { useSelector ,useDispatch} from "react-redux";
 import { getData } from "../../Redux/layoutaction";
 import { Navbar } from "./Navbar"
 import { Stickynav } from './stickynav';
 import styled from "styled-components"
 import {ProgressBar} from "./ProgressBar" 
 import { Topdonors } from "./Leaderboard";
-import StickyNavBar from './StickyNavbar';
 import { useParams } from 'react-router-dom';
 import {Spinner,PaymentFailureAnime} from "team-carbon-ui"
 import {PaymentSimulation} from "../PaymentSimulation"
@@ -17,8 +16,10 @@ margin:auto;
 min-height:400vh;
 box-shadow:0 1px 1px 0 hsla(0, 0%, 0%, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.19);
 `
-let Loader = styled.h1`
-text-align:center;`
+ 
+let Loaddiv = styled.div`
+margin-top:15%;
+`
 
 let Blog = styled.div`
 width:65%;
@@ -119,14 +120,13 @@ export function Layout(){
     let [toggleModal,setModal] = React.useState(false);
     let data = useSelector(state=>state.layout.data);
     let isLoading = useSelector(state=>state.layout.isLoading);
-    let isError = useSelector(state=>state.layout.isError)
+    let isError = useSelector(state=>state.layout.isError);
     let dispatch = useDispatch();
     let {id} = useParams();
     let togglepaymentModal = ()=>{
         setModal(!toggleModal);
     }
-    console.log(toggleModal)
-    console.log(id);
+ 
     let currencyVal = new Intl.NumberFormat('en-IN',{
         // style: 'currency',
         // currency:'INR',
@@ -137,8 +137,8 @@ export function Layout(){
     let donationGoal = currencyVal.format(data.donation_goal)
     useEffect(()=>{
         dispatch(getData(id)).then(()=>setState(true))
-    },[])
-    console.log(data,isLoading,isError)
+    },[id,dispatch])
+  
    let achievedPercent = Math.floor((data.curr_donation)/(data.donation_goal) * 100)
     if(achievedPercent > 100){
         achievedPercent = 100;
@@ -146,7 +146,7 @@ export function Layout(){
 
     const getDaysLeft = () => {
         let addDateComponents = data.due_date.split('/').map(Number);
-        console.log(addDateComponents);
+
         let today = new Date();
         let date = today.getDate();
         let month = today.getMonth();
@@ -155,7 +155,6 @@ export function Layout(){
         month * 30) + 
         date -(addDateComponents[0] * 30 + addDateComponents[1] + addDateComponents[2]*365);
         daysRemaining = daysRemaining < 0 ?(daysRemaining*-1) : daysRemaining;
-        console.log( (year * 365 + month * 30) + date,(addDateComponents[0] * 30 + addDateComponents[1] + addDateComponents[2]*365))
         return daysRemaining;
     }
     let dueDate;
@@ -178,7 +177,7 @@ export function Layout(){
         window.addEventListener("scroll", handleScroll);
         return () => window.addEventListener("scroll", handleScroll);
       });
-    return isLoading?<Spinner/>:isError?<PaymentFailureAnime/>:(
+    return isLoading?<Loaddiv><Spinner/></Loaddiv>:isError?<PaymentFailureAnime/>:(
         <>
         {toggleModal&&<PaymentSimulation id={id} togglepaymentModal={togglepaymentModal}/>}
          <div>

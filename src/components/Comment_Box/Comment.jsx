@@ -9,17 +9,17 @@ import {add_comment} from "../../Redux/commentBox/action"
 export const Comment = ({id}) => {
   const dispatch = useDispatch();
   let [isLoading, setIsLoading] = useState(false);
-  let { comment } = useSelector((state) => state.Comment, shallowEqual);
   const getComment = () => {
     setIsLoading(false);
     dispatch(get_comment(id));
   };
+  let { comment } = useSelector((state) => state.Comment, shallowEqual);
   useEffect(() => {
     getComment();
     add_comment();
+      //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch]);
 
-  console.log(comment);
   return isLoading ? (
     <h1>..Loading</h1>
   ) : (

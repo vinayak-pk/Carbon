@@ -1,5 +1,5 @@
 import React from "react";
-// import { useHistory } from 'react-router-dom'
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import paytmkaro from "./imge/paytmkaro.png";
 
@@ -15,29 +15,31 @@ export const Donate = ({data}) => {
             transfers are allowed.
           </h3>
           <table>
-            <tr>
-              <td>Virtual A/C No</td>:<td>{data.acno}</td>
-            </tr>
-            <tr>
-              <td>Virtual A/C Name</td>:<td>{data.first_name+" "+data.last_name}</td>
-            </tr>
-            <tr>
-              <td>A/C Type</td>:<td>Current</td>
-            </tr>
-            <tr>
-              <td>IFSC </td>:<td>YESB0CMSNOC</td>
-            </tr>
+            <tbody>
+                <tr>
+                  <td>Virtual A/C No</td><td>:</td><td>{data.acno}</td>
+                </tr>
+                <tr>
+                  <td>Virtual A/C Name</td><td>:</td><td>{data.first_name+" "+data.last_name}</td>
+                </tr>
+                <tr>
+                  <td>A/C Type</td><td>:</td><td>Current</td>
+                </tr>
+                <tr>
+                  <td>IFSC </td><td>:</td><td>YESB0CMSNOC</td>
+                </tr>
+            </tbody>
           </table>
           <p>
             (The digit after B is Zero and the letter after N is O for orange.)
           </p>
         </div>
-        <claiming>
-          <h8>
+        <Claiming>
+          <h3>
             Claim your donation acknowledgement now! For payment done via{" "}
-            <a>Bank Transfer</a>
-          </h8>
-        </claiming>
+            <Link to="./">Bank Transfer</Link>
+          </h3>
+        </Claiming>
       </CmntItem>
 
       <CmnItem>
@@ -46,20 +48,23 @@ export const Donate = ({data}) => {
             Transfer directly to the Bank account of this Fundraiser. Only INR
             transfers are allowed.
           </h3>
-          <po>Scan the QR code from the aap and make payment.</po>
+          <p>Scan the QR code from the aap and make payment.</p>
         </div>
       </CmnItem>
       <Content img={paytmkaro}>
-        <btn1>
+        <Btn>
           <button>Generate QR</button>
-        </btn1>
-        <btn2>
+        </Btn>
+        <Btn>
           <button>Generate QR</button>
-        </btn2>
+        </Btn>
       </Content>
     </CommentWrapper>
   );
 };
+
+const Btn = styled.div`
+cursor: pointer;`
 
 const CommentWrapper = styled.div`
   border: 1px solid #b9b9b9;
@@ -91,6 +96,7 @@ const CommentWrapper = styled.div`
   }
 `;
 
+
 const CmntItem = styled.div`
   padding: 5px;
   width: 680px;
@@ -115,7 +121,14 @@ const CmntItem = styled.div`
     color: #686767;
   }
 
-  claiming {
+  table{
+    text-align:center;
+    margin:auto;
+    color: #686767;
+  }
+`;
+
+const Claiming = styled.div`
     font-size: 17px;
     font-family: cursive;
     background: rgb(1, 191, 189);
@@ -126,15 +139,8 @@ const CmntItem = styled.div`
     a {
       color: rgb(1, 67, 191);
       text-decoration: underline;
-    }
-  }
-
-  table{
-    text-align:center;
-    margin:auto;
-    color: #686767;
-  }
-`;
+    
+  }`
 const CmnItem = styled.div`
   padding: 5px;
   width: 680px;

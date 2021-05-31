@@ -11,10 +11,8 @@ function Button({ currentUser }) {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [click, setClick] = useState(false);
-  console.log(click);
   const user = useSelector(state=>state.auth.User)
   const handleClick = () => setClick(!click);
-  console.log(click);
   let dispatch = useDispatch();
   const handleSignIn = (e) => {
     e.preventDefault();
@@ -24,12 +22,13 @@ function Button({ currentUser }) {
       .signInWithEmailAndPassword(email, password)
 
       .then((res) => { alert("User Logged In Sucessfully !")
+      console.log(res.user)
       dispatch(setUser(res.user.displayName))
   })
       .catch((err) => {console.log(err);alert("Wrong credentials!")});
   };
   let short = ()=>{
-    console.log(user);
+
     let name = user.split(' ');
     return name[0];
   }
@@ -44,7 +43,7 @@ function Button({ currentUser }) {
     <div>
       {currentUser && currentUser ? (
         <li>
-          <button className={{borderRadius:"50px",background:"lightgrey"}} onClick={handleClick} className="btn">
+          <button style={{borderRadius:"50px",background:"lightgrey"}} onClick={handleClick} className="btn">
            {short()}
           </button>
           </li>):(<li> 
@@ -57,12 +56,13 @@ function Button({ currentUser }) {
         className={click ? 'dropdown-menu':'dropdown-menu clicked' }
       >   
             <li>
-              <p style={{margin:"0%",padding:"10px 0px"}}>{user}</p>
+              <p style={{margin:"0 26%",padding:"10px 0px"}}>{user}</p>
             </li>
             <li> 
               <Link
                 className="dropdown-link"
                 onClick={handleSignout}
+                style={{margin:"0 30%",padding:"10px 0px"}}
               >
                 Sign out
               </Link>
@@ -83,6 +83,7 @@ function Button({ currentUser }) {
           <div className="left-Content_modal">
             <div>
               <input
+                className="Input"
                 type="text"
                 placeholder="Email Address"
                 value={email}
@@ -91,6 +92,7 @@ function Button({ currentUser }) {
             </div>
             <div>
               <input
+              className="Input"
                 type="password"
                 placeholder="Password"
                 value={password}
@@ -104,17 +106,17 @@ function Button({ currentUser }) {
             <div>
               <h6>
                 By continuing you agree to our
-                <a style={{ color: "rgb(1,191,189)" }}>
+                <Link style={{ color: "rgb(1,191,189)" }}>
                   {" "}
                   Terms of Service
-                </a> and{" "}
+                </Link> and{" "}
                 <p style={{ color: "rgb(1,191,189)" }}>Privacy Policy.</p>
               </h6>
             </div>
             <div>
               <p>
                 Want to start a fundraiser?{" "}
-                <a style={{ color: "rgb(1,191,189)" }}>Click here</a>
+                <Link style={{ color: "rgb(1,191,189)" }}>Click here</Link>
               </p>
             </div>
           </div>
@@ -131,7 +133,7 @@ function Button({ currentUser }) {
                 }}
               >
                 <img
-                  width="30px"
+                  width="20px"
                   src="https://ketto.gumlet.io/assets/images/login/google.png?w=240&dpr=1.0"
                   alt="gmail"
                 />
@@ -147,7 +149,7 @@ function Button({ currentUser }) {
               >
                 <img
                 style={{ margin:"auto"}}
-                  width="30px"
+                  width="20px"
                   src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTPwov60381HTsOCduYJ-Sh0YZkgqPNuFesQ&usqp=CAU"
                   alt="fb"
                 />

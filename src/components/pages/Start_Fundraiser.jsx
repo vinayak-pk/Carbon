@@ -4,6 +4,7 @@ import { auth } from "../../firebase";
 import Modal from "react-modal";
 import styles from "./Start_Fund.module.css";
 import { useHistory } from "react-router";
+import { Link } from "react-router-dom";
 
 export default function Start_Fundraiser() {
   const [password, setPassword] = React.useState("");
@@ -100,7 +101,7 @@ export default function Start_Fundraiser() {
             </div>
             <p>
               Already have an account?{" "}
-              <a style={{ color: "rgb(1,191,189) " }}>Login</a>
+              <Link style={{ color: "rgb(1,191,189) " }}>Login</Link>
             </p>
             <button className={styles.signBtn} onClick={handleSignUp}>
               Sign Up

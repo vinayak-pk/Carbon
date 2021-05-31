@@ -4,15 +4,8 @@ import { DisplayCard } from "team-carbon-ui";
 
 function Home_Display_Cards(){
     const [fundRaisers, setFundRaisers] = React.useState([]);
-    const getData = () => {
-        axios.get("https://carbon-c9c2b-default-rtdb.firebaseio.com/fund_data.json")
-        .then((res) => {
-            setFundRaisers(res.data.slice(0,4));
-        })
-    }
     const getDaysLeft = (addDate) => {
         let addDateComponents = addDate.split('/').map(Number);
-        console.log(addDateComponents);
         let today = new Date();
         let date = today.getDate();
         let month = today.getMonth();
@@ -24,7 +17,12 @@ function Home_Display_Cards(){
         return daysRemaining;
     }
     React.useEffect(() => {
-        console.log('Here');
+      const  getData = () => {
+            axios.get("https://carbon-c9c2b-default-rtdb.firebaseio.com/fund_data.json")
+            .then((res) => {
+                setFundRaisers(res.data.slice(0,4));
+            })
+        }
         getData();
     }, []);
 
@@ -48,4 +46,4 @@ function Home_Display_Cards(){
     )
 }
 
-export {Home_Display_Cards}
+export default Home_Display_Cards

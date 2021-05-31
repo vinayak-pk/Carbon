@@ -25,13 +25,13 @@ import why_ketto8 from '../../images/why_ketto8.png'
 import call_to_action1 from '../../images/call_to_action1.png'
 import call_to_action2 from '../../images/call_to_action2.png'
 import success_story1 from '../../images/success_story1.jpg'
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import './Home_Css.css'
 import {Footer} from '../Footer/Footer';
-import { Home_Display_Cards } from './Home_Display_Cards';
+import  HomeDisplayCard  from './Home_Display_Cards';
 import Navbar from '../Navbar/Navbar';
 export default function Home() {
-  let history = useHistory();
+  let history = useHistory(); 
 
   const redirect = () => {
     history.push('/new/fundraiser')
@@ -62,12 +62,12 @@ export default function Home() {
                 </div>
                 <div className='home_company_data'>
                   <p className='home_company_data1'>55 Lakh+</p>
-                  <p className='home_company_data2'>RAISED</p>
+                  <p className='home_company_data2'>DONORS</p>
 
                 </div>
                 <div className='home_company_data'>
                   <p className='home_company_data1'>2 Lakh+</p>
-                  <p className='home_company_data2'>RAISED</p>
+                  <p className='home_company_data2'>FUNDRAISERS</p>
 
                 </div>
               </div>
@@ -76,7 +76,7 @@ export default function Home() {
                 <span className='home_fontmanage1'> 0% </span> <span className="home_fontmanage2"> Platform fees</span> ensures maximum funds for you</p>
                 <button onClick={redirect} className='home_button'>Start a Fundraiser for FREE</button>
                 <br />
-                <a className="home_fontmanage3" href="#">नि: शुल्क फंडरेजर शुरू करें</a>
+                <Link className="home_fontmanage3" href="#">नि: शुल्क फंडरेजर शुरू करें</Link>
               </div>
             </div>
           </div>
@@ -87,14 +87,14 @@ export default function Home() {
             <h1 style={{ fontSize:"32px"}}> 
               Trending Fundraisers
             </h1>
-
+                   
             <p style={{ textAlign:"center"}}>
               View the fundraisers that are most active right now
             </p>
 
-            <div style={{width:"95%", margin:"auto"}}>
+            <div style={{width:"95%", margin:"5%"}}>
             {/* <DisplayCard/> */}
-            <Home_Display_Cards/>
+            <HomeDisplayCard/>
 
             {/* <BrowseFundraiser/> */}
             </div>
@@ -110,7 +110,7 @@ export default function Home() {
           <div style={{  height: "560px", width: "80%", margin: "auto" }}>
 
             <div className="home_middle2">
-              <img src={sac_separator} style={{ height: "450px" }} />
+              <img src={sac_separator} style={{ height: "450px" }} alt="separator"/>
             </div>
             <div className="home_middle1">
               <div style={{  height: "33%" }}>
@@ -130,7 +130,7 @@ export default function Home() {
             </div>
             <div >
 
-              <video className="home_middle3" controls width="270">
+              <video className="home_middle3" loop autoPlay width="270">
                 <source src={homepage_video} type="video/webm" />
               </video>
 
@@ -243,7 +243,7 @@ the project that you want to raise funds for.</div>
             <p className='hashtag_library'>#LibraryOfDistractions</p>
             <div className="hash_mid_cont">
               <div style={{ float: "left", marginRight: "50px" }}>
-                <img src={lib_distraction} style={{ height: "300px", width: "110%" }} />
+                <img src={lib_distraction} style={{ height: "300px", width: "110%" }} alt="lib"/>
               </div>
               <div style={{ margin: "40px" }}>
                 <p style={{ fontSize: "20px" }}>Ketto is gearing up to set the world record by curating the largest <span style={{ fontWeight: "bold" }}>#LibraryOfDistractions</span> stories. And you can become a part of this. Are you ready to help set a #worldrecord?</p>
@@ -351,7 +351,7 @@ the project that you want to raise funds for.</div>
             <div className="success_story_cont">
 
               <div style={{ float: "left", marginRight: "30px" }}>
-                <img src={success_story1} style={{  width: "100%" }} />
+                <img src={success_story1} style={{  width: "100%" }} alt="Success" />
               </div>
               <div>
                 <p style={{ fontSize: "20px",fontWeight:"600" }}>

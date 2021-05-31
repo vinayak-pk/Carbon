@@ -4,24 +4,24 @@
     top: 70px;
     right:10px;
     list-style: none;
-    text-align: start;
+    text-align: left;
   }
 
   .dropdown-menus {
-    width: 160px;
+    width: 190px;
     position: absolute;
     top: 70px;
-    right:600px;
+    right:570px;
     background: white;
     list-style: none;
     text-align: left;
   }
   
-  .dropdown-menu li {
+  .dropdown-menu li { 
     background: white;
     box-shadow: 0px 0px 7px rgb(226, 226, 226);
     cursor: pointer;
-    text-align: center;
+    text-align: left;
   }
   
   .dropdown-menu li:hover {
@@ -37,8 +37,9 @@
     height: 100%;
     width: 100%;
     text-decoration: none;
-    padding: 16px;
+    padding: 16px 3px;
     color: black;
+    text-align: left;
 
   }
   .dropdown-link:hover {

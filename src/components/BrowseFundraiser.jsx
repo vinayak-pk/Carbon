@@ -1,15 +1,15 @@
 import React from "react";
 import {useParams} from "react-router-dom";
-import {DisplayCard,  SmallSpinner, SideBar, SideBarItem} from "team-carbon-ui";
+import {DisplayCard,  Spinner, SideBar, SideBarItem} from "team-carbon-ui";
 import { BannerItem, HeaderBanner, HeaderTitle, HeaderDiv, HeaderSubTitle, 
     StyledLink} from './StyledBasicComponents';
 import '../index.css';
-import { PaymentSimulation }from './PaymentSimulation';
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
-import { getFundRaisers, setOpenPaymentModal } from '../Redux/FundRaiserUI/action';
+import { getFundRaisers} from '../Redux/FundRaiserUI/action';
 import styles from "./EssentialAlignment.module.css"
 import {useHistory} from "react-router-dom"
 import Navbar from "./Navbar/Navbar";
+import styled from "styled-components"
 const SideBarItemsList = [
     {name:'All Categories',value:""},
      {name:'Medical',value:"medical"}, 
@@ -23,24 +23,24 @@ const SideBarItemsList = [
   {name:'Community Development',value:"community"},
    {name:"Others",value:'others'}];
 
+   let Loaddiv = styled.div`
+   margin-top:15%;
+   `
+
 const LinkedSideBarItems = SideBarItemsList.map((item) => (
 <StyledLink to ={`/fundraisers/category/${item.value}`}>{item.name}</StyledLink>))
 
 export const BrowseFundraiser = () => {
     let history = useHistory();
-    const { isLoading, fundRaiser, openPaymentModal, isError } = useSelector(state => state.fundRaiser, shallowEqual);
+    const { isLoading, fundRaiser} = useSelector(state => state.fundRaiser, shallowEqual);
     const dispatch = useDispatch();
-    const getData = () => {
-        dispatch(getFundRaisers());
-    }
 
-    const toggleOpenPaymentModal = () => {
-        dispatch(setOpenPaymentModal());
-    }
+    // const toggleOpenPaymentModal = () => {
+    //     dispatch(setOpenPaymentModal());
+    // } 
 
     const getDaysLeft = (addDate) => {
         let addDateComponents = addDate.split('/').map(Number);
-        console.log(addDateComponents);
         let today = new Date();
         let date = today.getDate();
         let month = today.getMonth();
@@ -53,12 +53,13 @@ export const BrowseFundraiser = () => {
     }
 
     React.useEffect(() => {
-        console.log('Here');
+        const getData = () => {
+            dispatch(getFundRaisers());
+        }
         getData();
-    }, []);
+    }, [dispatch]);
 
     let {val} = useParams();
-    console.log(val);
     let filtered = [];
     if(val){
         filtered = fundRaiser?.filter((el)=> el.category===val);
@@ -96,7 +97,7 @@ export const BrowseFundraiser = () => {
         </SideBar>
     </div>
     <div className= {styles.alignment2}> 
-       {isLoading ?<SmallSpinner/>:(filtered?.map((item, i) => (
+       {isLoading ?<Loaddiv><Spinner/></Loaddiv>:(filtered?.map((item, i) => (
            <div onClick={()=>redirectPage(i)}>
             <DisplayCard title = {item.title}
             imageURL = {item.profile_image}

@@ -22,7 +22,7 @@ export const PaymentSimulation = ({togglepaymentModal, toggleOpenPaymentModal,id
     const [changeToNext, setChangeToNext] = React.useState(false);
     const [formData, setFormData] = React.useState(initVal);
     const [paymentData, setPaymentData] = React.useState({cardNum:'', exp:'', cvv:''});
-    let user = useSelector(state=>state.auth.User)
+    // let user = useSelector(state=>state.auth.User)
     let data = useSelector(state=>state.layout.data)
     let fundraiser = useSelector(state=>state.fundRaiser.fundRaiser)
     const evaluateEntries =() => {
@@ -57,7 +57,6 @@ export const PaymentSimulation = ({togglepaymentModal, toggleOpenPaymentModal,id
         dispatch(updateFundRaisers(data.curr_donation,id,{paidAmount:paymentAmount}));
         dispatch(updateFunds(id,{...formData,donation:Number(paymentAmount),id:fundraiser.length+1},data)).then(()=>togglepaymentModal())
     }
-    console.log(formData)
      return (changeToNext?
         (paymentProcess?(<ModalBox>
             <ModalBodyDiv>
