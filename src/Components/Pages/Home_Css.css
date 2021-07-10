@@ -75,26 +75,27 @@
 
 
 .home_middle{
+    margin-bottom: 1.5em;
     font-weight: 700;
-    font-size: 36px;
-    line-height: 45px;
+    font-size: 3em;
+    line-height: 3em;
     color: #444;
     text-align: center;
-    line-height: 50px;
+    line-height: 15%;
 }
 
 .home_middle1{
-    height: 550px;
+    height: 30em;
     width: 45%;
     float: left;
 }
 .home_middle2{
-    height: 550px;
+    height: 25%;
     float: left;
-
 }
+
 .home_middle3{
-    margin-left: 100px;
+    margin-left: 15%;
 }
 
 .startfont{
@@ -205,6 +206,7 @@
     float: left;
     margin: 1%;
     border-radius: 5px;
+    background-repeat:repeat-y;
 }
 
 .why_ketto_block{

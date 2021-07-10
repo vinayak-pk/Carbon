@@ -30,9 +30,11 @@ import './Home_Css.css'
 import {Footer} from '../Footer/Footer';
 import  HomeDisplayCard  from './Home_Display_Cards';
 import Navbar from '../Navbar/Navbar';
+import Fund_Button from './Fund_Button';
+import Talk_Button from './Talk_Button';
 export default function Home() {
   let history = useHistory(); 
-
+  
   const redirect = () => {
     history.push('/new/fundraiser')
   }
@@ -48,7 +50,7 @@ export default function Home() {
       <div>
       <Navbar />
         <section>
-          <div style={{ backgroundImage: `url(${background})`, height: "480px", objectFit: 'cover' }}>
+          <div style={{   backgroundRepeat:"repeat-y", backgroundImage: `url(${background})`, height: "480px", objectFit: 'cover' }}>
             <div className='img_div1'>
 
               <div style={{ fontWeight: '700', color: '#444', fontSize: '34px' }}>
@@ -74,7 +76,7 @@ export default function Home() {
               <div style={{ width: "80%", height: "30%" }}>
                 <p className="home_fontmanage">Ketto’s
                 <span className='home_fontmanage1'> 0% </span> <span className="home_fontmanage2"> Platform fees</span> ensures maximum funds for you</p>
-                <button onClick={redirect} className='home_button'>Start a Fundraiser for FREE</button>
+                <Fund_Button/>
                 <br />
                 <Link className="home_fontmanage3" to="/new/fundraiser">नि: शुल्क फंडरेजर शुरू करें</Link>
               </div>
@@ -138,8 +140,9 @@ export default function Home() {
 
           </div>
           <div className='home_button_css'>
-            <button onClick={redirect} className='home_button'>Start a Fundraiser for FREE</button>
-            <button onClick={redirect1} className='home_button11'>TALK TO US</button>
+          <button onClick={redirect} className='home_button'>Start a Fundraiser for FREE</button>
+          <button onClick={redirect1} className='home_button11'>TALK TO US</button>
+
           </div>
           <div className='home_button_css'>
             <div className='home_button_css3'>Have any questions for us? Chat with our team on WhatsApp Now</div>
@@ -259,7 +262,7 @@ the project that you want to raise funds for.</div>
           <div className="home_blocks" style={{ height: "550px" }}>
 
             <div className="why_ketto_block">
-              <div style={{ backgroundImage: `url(${why_ketto1})` }} className="why_ketto_block1">
+              <div style={{backgroundRepeat:"repeat-y", backgroundImage: `url(${why_ketto1})` }} className="why_ketto_block1">
 
               </div>
               <div className="why_ketto_block2">
@@ -269,7 +272,7 @@ the project that you want to raise funds for.</div>
 
 
             <div className="why_ketto_block">
-              <div style={{ backgroundImage: `url(${why_ketto2})` }} className="why_ketto_block1">
+              <div style={{backgroundRepeat:"repeat-y", backgroundImage: `url(${why_ketto2})` }} className="why_ketto_block1">
 
               </div>
               <div className="why_ketto_block2">
@@ -280,7 +283,7 @@ the project that you want to raise funds for.</div>
 
 
             <div className="why_ketto_block">
-              <div style={{ backgroundImage: `url(${why_ketto3})` }} className="why_ketto_block1">
+              <div style={{backgroundRepeat:"repeat-y", backgroundImage: `url(${why_ketto3})` }} className="why_ketto_block1">
 
               </div>
               <div className="why_ketto_block2">
@@ -291,7 +294,7 @@ the project that you want to raise funds for.</div>
 
 
             <div className="why_ketto_block">
-              <div style={{ backgroundImage: `url(${why_ketto4})` }} className="why_ketto_block1">
+              <div style={{backgroundRepeat:"repeat-y", backgroundImage: `url(${why_ketto4})` }} className="why_ketto_block1">
 
               </div>
               <div className="why_ketto_block2">
@@ -302,7 +305,7 @@ the project that you want to raise funds for.</div>
 
 
             <div className="why_ketto_block">
-              <div style={{ backgroundImage: `url(${why_ketto5})` }} className="why_ketto_block1">
+              <div style={{backgroundRepeat:"repeat-y", backgroundImage: `url(${why_ketto5})` }} className="why_ketto_block1">
 
               </div>
               <div className="why_ketto_block2">
@@ -313,7 +316,7 @@ the project that you want to raise funds for.</div>
 
 
             <div className="why_ketto_block">
-              <div style={{ backgroundImage: `url(${why_ketto6})` }} className="why_ketto_block1">
+              <div style={{backgroundRepeat:"repeat-y", backgroundImage: `url(${why_ketto6})` }} className="why_ketto_block1">
 
               </div>
               <div className="why_ketto_block2">
@@ -324,7 +327,7 @@ the project that you want to raise funds for.</div>
 
 
             <div className="why_ketto_block">
-              <div style={{ backgroundImage: `url(${why_ketto7})` }} className="why_ketto_block1">
+              <div style={{backgroundRepeat:"repeat-y", backgroundImage: `url(${why_ketto7})` }} className="why_ketto_block1">
 
               </div>
               <div className="why_ketto_block2">
@@ -334,7 +337,7 @@ the project that you want to raise funds for.</div>
 
 
             <div className="why_ketto_block">
-              <div style={{ backgroundImage: `url(${why_ketto8})` }} className="why_ketto_block1">
+              <div style={{backgroundRepeat:"repeat-y", backgroundImage: `url(${why_ketto8})` }} className="why_ketto_block1">
 
               </div>
               <div className="why_ketto_block2">
@@ -375,21 +378,20 @@ the project that you want to raise funds for.</div>
             
             
             <div className="get_demo">
-              <div style={{ backgroundImage: `url(${call_to_action1})`,height:"51%"}} className="getdeomo_block1">
+              <div style={{backgroundRepeat:"repeat-y",margin:"auto", backgroundImage: `url(${call_to_action1})`,height:"51%"}} className="getdeomo_block1">
 
               </div>
               <div className="getdemo_block2">
               Get a demo of all fundraising features
               <p style={{fontSize:"16px",fontWeight:"500"}}>Connect with an expert for a one-on-one demonstration of how Ketto can help you fundraise.</p>
               <button style={{ marginLeft: "5px" }} className='lets_Start_Btn1'>Talk To Us</button>
-
               </div>
 
             </div>
 
 
             <div className="get_demo">
-              <div style={{ backgroundImage: `url(${call_to_action2})`,height:"51%"}} className="getdeomo_block1">
+              <div style={{ backgroundRepeat:"repeat-y",backgroundImage: `url(${call_to_action2})`,height:"51%"}} className="getdeomo_block1">
 
               </div>
               <div className="getdemo_block2">
