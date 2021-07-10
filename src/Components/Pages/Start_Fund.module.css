@@ -1,0 +1,46 @@
+.modalauthBox{
+    width: 39%;
+    height: 75vh;
+    margin: 70px auto;
+    background-color: white;
+    border:1px solid white;
+    border-radius: 10px;
+}
+
+.dropdown {
+  width: 85%;
+  height: 40px;
+  border-radius: 20px;
+  text-align: center;
+  margin: 10px auto;
+  background-color: rgb(224, 224, 224);
+}
+.option {
+  border: transparent;
+  margin: 10px auto;
+  border-bottom: 1px solid grey;
+  background-color: rgb(224, 224, 224);
+}
+.inputDiv{
+text-align: center;
+
+}
+
+input{
+    margin: 20px auto;
+    width: 450px;
+    height: 30px;
+    border: white;
+    border-bottom: 1px solid grey;
+  }
+  .signBtn{
+    margin: 10px auto;
+    width: 490px;
+    height: 40px;
+    background-color:rgb(1,191,189) ;
+    color: aliceblue;
+    font-weight: 600;
+    font-size: 17px;
+    border-radius: 10px;
+    border:1px transparent;
+  }
