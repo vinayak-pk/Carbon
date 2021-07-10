@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 // import { useHistory } from 'react-router-dom'
 import styled from "styled-components";
-import { get_comment } from "../../Redux/commentBox/action";
+import { get_comment } from "../../Redux/CommentBox/action";
 import { CommentForm } from "./CommentForm";
-import {add_comment} from "../../Redux/commentBox/action"
+import {add_comment} from "../../Redux/CommentBox/action"
 
 export const Comment = ({id}) => {
   const dispatch = useDispatch();

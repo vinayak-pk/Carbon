@@ -3,13 +3,15 @@ import { Link } from "react-router-dom"
 import styles from "./Navbar.module.css"
 import {useHistory} from "react-router-dom"
 import { useSelector } from 'react-redux';
+import {delData} from "../../Redux/Auth/persistData"
 export function Navbar(){
     let User = useSelector(state=>state.auth.User)
     let history = useHistory();
     let reRoute = ()=>{
         history.push('/')
     }
-    let user = User.split(' ')
+    let user = User.split(' ');
+
     return(
         <div className={styles.navbar}>
             <img style={{cursor:"pointer"}} onClick={reRoute} src="https://ketto.gumlet.io/assets/images/logo-light-bg.svg?dpr=1.0&q=70&w=100" alt=""/>
@@ -19,7 +21,7 @@ export function Navbar(){
                 </button>
                 <div className={styles.dropdowncontent}>
                     <Link to="/" href="#">{User}</Link>
-                    <Link to="/" href="#">Sign out</Link>
+                    <Link onClick={()=>delData('user')} to="/" href="#">Sign out</Link>
                 </div>
             </div> 
         </div>

@@ -27,8 +27,8 @@ const SideBarItemsList = [
    margin-top:15%;
    `
 
-const LinkedSideBarItems = SideBarItemsList.map((item) => (
-<StyledLink to ={`/fundraisers/category/${item.value}`}>{item.name}</StyledLink>))
+const LinkedSideBarItems = SideBarItemsList.map((item,i) => (
+<StyledLink key={i} to ={`/fundraisers/category/${item.value}`}>{item.name}</StyledLink>))
 
 export const BrowseFundraiser = () => {
     let history = useHistory();
@@ -98,7 +98,7 @@ export const BrowseFundraiser = () => {
     </div>
     <div className= {styles.alignment2}> 
        {isLoading ?<Loaddiv><Spinner/></Loaddiv>:(filtered?.map((item, i) => (
-           <div onClick={()=>redirectPage(i)}>
+           <div key={i} onClick={()=>redirectPage(i)}>
             <DisplayCard title = {item.title}
             imageURL = {item.profile_image}
             AuthorName = {item.first_name + " " + item.last_name}

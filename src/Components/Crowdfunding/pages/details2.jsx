@@ -1,7 +1,7 @@
 import react from "react"
 import { useDispatch } from "react-redux";
 import { useHistory} from "react-router-dom";
-import { addData } from '../../../Redux/crowdfunding_register/cf_action';
+import { addData } from '../../../Redux/CrowdfundingRegister/cf_action';
 import styled from "./pages.module.css"
 import { Formbody,Input,Select,Mainbody,Button,Body } from './detailspage';
 export const reference = [

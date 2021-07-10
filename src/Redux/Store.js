@@ -3,7 +3,7 @@ import thunk from "redux-thunk";
 import authReducer from "./Auth/auth.reducer";
 import {reducer as fund_raiser} from "./FundRaiserUI/reducer"
 import { layoutreducer } from './layoutreducer';
-import {reducer as commentReducer} from "./commentBox/reducer"
+import {reducer as commentReducer} from "./CommentBox/reducer"
 const rootReducer = combineReducers({
   auth: authReducer,
   fundRaiser: fund_raiser,

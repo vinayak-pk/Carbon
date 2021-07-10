@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
-import { add_comment } from "../../Redux/commentBox/action";
+import { add_comment } from "../../Redux/CommentBox/action";
 import styled from "styled-components";
 
 export const CommentForm = ({ id, getData }) => {

@@ -36,7 +36,6 @@ export const get_comment = (id) => (dispatch) => {
     .get(`https://carbon-c9c2b-default-rtdb.firebaseio.com/comments/${id}.json`)
     .then((res) => {
       dispatch(get_comment_success(res.data));
-      console.log(res.data);
     })
     .catch((err) => {
       dispatch(get_comment_failure());

@@ -1,7 +1,7 @@
 import react, {  useRef } from "react"
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { addData } from '../../../Redux/crowdfunding_register/cf_action';
+import { addData } from '../../../Redux/CrowdfundingRegister/cf_action';
 import styled from "styled-components"
 
 export const reference = [

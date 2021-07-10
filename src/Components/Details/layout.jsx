@@ -13,7 +13,7 @@ import { Donate } from '../Donation_Box/Donate';
 let Layoutbody = styled.div`
 width:80%;
 margin:auto;
-min-height:400vh;
+min-height:200vh;
 box-shadow:0 1px 1px 0 hsla(0, 0%, 0%, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.19);
 `
  
@@ -115,7 +115,6 @@ box-shadow:0 2px 4px 0 rgba(0, 0, 0, 0.075), 0 3px 5px 0 rgba(0, 0, 0, 0.19);
 }
 `
 export function Layout(){
-    const [scrolling, setScrolling] = React.useState(false);
     let [state,setState]=React.useState(false);
     let [toggleModal,setModal] = React.useState(false);
     let data = useSelector(state=>state.layout.data);
@@ -133,19 +132,19 @@ export function Layout(){
         minimumFractionDigits:0,
     });
     // console.log(currencyVal.format(data.curr_donation));
-    let curDonation = currencyVal.format(data.curr_donation);
-    let donationGoal = currencyVal.format(data.donation_goal)
+    let curDonation = currencyVal.format(data?.curr_donation);
+    let donationGoal = currencyVal.format(data?.donation_goal)
     useEffect(()=>{
         dispatch(getData(id)).then(()=>setState(true))
     },[id,dispatch])
   
-   let achievedPercent = Math.floor((data.curr_donation)/(data.donation_goal) * 100)
+   let achievedPercent = Math.floor((data?.curr_donation)/(data?.donation_goal) * 100)
     if(achievedPercent > 100){
         achievedPercent = 100;
     }
 
     const getDaysLeft = () => {
-        let addDateComponents = data.due_date.split('/').map(Number);
+        let addDateComponents = data?.due_date.split('/').map(Number);
 
         let today = new Date();
         let date = today.getDate();
@@ -162,21 +161,11 @@ export function Layout(){
         dueDate = getDaysLeft();
     }
      let nameApp = ()=>{
-        let f = data.first_name.slice(0,1);
-        let l = data.last_name.slice(0,1);
+        let f = data?.first_name.slice(0,1);
+        let l = data?.last_name.slice(0,1);
         return f + l;
     }
-    const handleScroll = () => {
-        if (window.pageYOffset >= 550) {
-          setScrolling(true);
-        } else {
-          setScrolling(false);
-        }
-      };
-      useEffect(() => {
-        window.addEventListener("scroll", handleScroll);
-        return () => window.addEventListener("scroll", handleScroll);
-      });
+
     return isLoading?<Loaddiv><Spinner/></Loaddiv>:isError?<PaymentFailureAnime/>:(
         <>
         {toggleModal&&<PaymentSimulation id={id} togglepaymentModal={togglepaymentModal}/>}
@@ -185,10 +174,10 @@ export function Layout(){
                 <Navbar/>
         </div>
         <Layoutbody>
-            <h1 style={{textAlign:"center",color:"rgba(73,72,73,255)"}}>{data.title}</h1>
+            <h1 style={{textAlign:"center",color:"rgba(73,72,73,255)"}}>{data?.title}</h1>
             <div style={{display:"flex",gap:"30px"}}>
                 <Blog>
-                    <Imgbody style={{backgroundImage:`url(${data.blog_img})`}}/>
+                    <Imgbody style={{backgroundImage:`url(${data?.blog_img})`}}/>
                     <Sharebut><i className="fa fa-share-alt" style={{marginRight:"10px"}}></i>Share this FundRaiser</Sharebut>
                     <div>
                         <Stickynav id={id}/>

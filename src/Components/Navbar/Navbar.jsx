@@ -33,7 +33,7 @@ function Navbar() {
       <nav className="navbarM">
         <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
           <img src={logo} style={{ height: "40px" }} alt="Logo"/>
-          <i class="fab fa-firstdraft" />
+          <i className="fab fa-firstdraft" />
         </Link>
         <div className="menu-icon" onClick={handleClick}>
           <i className={click ? "fas fa-times" : "fas FaBars"} />
@@ -53,7 +53,7 @@ function Navbar() {
             onMouseEnter={onMouseEnter}
             onMouseLeave={onMouseLeave}
           >
-            <Link className="nav-links" onClick={closeMobileMenu}>
+            <Link to="/" className="nav-links" onClick={closeMobileMenu}>
               Fundraise For <i className="fa fa-caret-down" />
             </Link>
             {dropdown && <Dropdown />}
@@ -79,7 +79,7 @@ function Navbar() {
           </li>
           <li className="nav-item">
             <Link
-              to={"/https://api.whatsapp.com/send?phone=917700975559"}
+              to={"https://api.whatsapp.com/send?phone=917700975559"}
               className="nav-links-chat"
               onClick={closeMobileMenu}
             >
@@ -87,9 +87,9 @@ function Navbar() {
             </Link>
           </li>
           <li>
-            <Link className="nav-links-mobile" onClick={closeMobileMenu}>
+            <div  className="nav-links-mobile" onClick={closeMobileMenu}>
               Sign In
-            </Link>
+            </div>
           </li>
         </ul>
         <Button />

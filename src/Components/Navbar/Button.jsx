@@ -27,11 +27,9 @@ function Button({ currentUser }) {
   })
       .catch((err) => {console.log(err);alert("Wrong credentials!")});
   };
-  let short = ()=>{
+    let name = user?.split(' ');
 
-    let name = user.split(' ');
-    return name[0];
-  }
+  
   let handleSignout=()=>{
     setClick(!click);
       auth.signOut();
@@ -44,7 +42,7 @@ function Button({ currentUser }) {
       {currentUser && currentUser ? (
         <li>
           <button style={{borderRadius:"50px",background:"lightgrey"}} onClick={handleClick} className="btn">
-           {short()}
+           {name[0]}
           </button>
           </li>):(<li> 
         <button onClick={() => setmodalIsOpen(true)} className="btn">
@@ -59,7 +57,7 @@ function Button({ currentUser }) {
               <p style={{margin:"0 26%",padding:"10px 0px"}}>{user}</p>
             </li>
             <li> 
-              <Link
+              <Link to="/"
                 className="dropdown-link"
                 onClick={handleSignout}
                 style={{margin:"0 30%",padding:"10px 0px"}}
@@ -106,7 +104,7 @@ function Button({ currentUser }) {
             <div>
               <h6>
                 By continuing you agree to our
-                <Link style={{ color: "rgb(1,191,189)" }}>
+                <Link  to="/" style={{ color: "rgb(1,191,189)" }}>
                   {" "}
                   Terms of Service
                 </Link> and{" "}
@@ -116,7 +114,7 @@ function Button({ currentUser }) {
             <div>
               <p>
                 Want to start a fundraiser?{" "}
-                <Link style={{ color: "rgb(1,191,189)" }}>Click here</Link>
+                <Link  to="/" style={{ color: "rgb(1,191,189)" }}>Click here</Link>
               </p>
             </div>
           </div>

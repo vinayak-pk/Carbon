@@ -72,11 +72,11 @@ export default function Home() {
                 </div>
               </div>
               <div style={{ width: "80%", height: "30%" }}>
-                <p class="home_fontmanage">Ketto’s
+                <p className="home_fontmanage">Ketto’s
                 <span className='home_fontmanage1'> 0% </span> <span className="home_fontmanage2"> Platform fees</span> ensures maximum funds for you</p>
                 <button onClick={redirect} className='home_button'>Start a Fundraiser for FREE</button>
                 <br />
-                <Link className="home_fontmanage3" href="#">नि: शुल्क फंडरेजर शुरू करें</Link>
+                <Link className="home_fontmanage3" to="/new/fundraiser">नि: शुल्क फंडरेजर शुरू करें</Link>
               </div>
             </div>
           </div>

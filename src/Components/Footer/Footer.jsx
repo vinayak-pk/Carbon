@@ -22,11 +22,11 @@ const Footer = () => {
 			<Container>
 				<Row>
 					<Column>
-						<Heading>
+						<div style={{marginBottom:"30px"}}>
 							<img src={logo_dark_ketto} style={{ height: "40px" }} alt="logo"/>
 							<hr style={{ width: "100%",marginBottom:"0px" ,margin: "5px auto", color: "rgb(53, 53, 53)" }} />
 
-						</Heading>
+						</div>
 
 						<FooterLink style={{marginTop:"-25px"}} href="#">
 						<img src={fb_logo} style={{height: "45px" }} alt="fb_logo"/>
@@ -112,14 +112,14 @@ const Footer = () => {
 
 
 				</Row>
-				<hr style={{ width: "100%", margin: "auto", color: "gray" }} />
+			 <hr style={{ width: "100%", margin: "auto", color: "gray" }} />
 
 				<p style={{ color: "#fff", margin: "30px auto" }}>Copyright © 2021 Ketto Online Ventures Pvt Ltd. All Rights Reserved.
 				Terms of Use |
 				Privacy Policy |
 				AML Policy |
 				Use of cookies
-</p>
+                </p>
 			</Container>
 
 		</Box>

@@ -1,7 +1,7 @@
 import React from "react";
 import axios from 'axios';
 import { DisplayCard } from "team-carbon-ui";
-
+import {Link} from "react-router-dom"
 function Home_Display_Cards(){
     const [fundRaisers, setFundRaisers] = React.useState([]);
     const getDaysLeft = (addDate) => {
@@ -28,20 +28,21 @@ function Home_Display_Cards(){
 
     return(
         <div>
-            {fundRaisers.map((item)=>(
-                <DisplayCard title = {item.title}
-                imageURL = {item.profile_image}
-                AuthorName = {item.first_name + " " + item.last_name}
-                raisedValue = {item.curr_donation}
-                achievedPercent = {Math.floor((item.donation_goal - item.curr_donation)/(item.donation_goal) * 100)}
-                lastDonation = {Math.floor(Math.random() * 23)}
-                daysLeft = {getDaysLeft(item.due_date)}
-                supportersCount = {item.supporters} 
-                key = {item.id} 
-                 />
-                 
-            ))}
-            
+                {fundRaisers.map((item)=>(
+                     <Link to={`/fundraiser/${item.id}`}>
+                    <DisplayCard title = {item.title}
+                    imageURL = {item.profile_image}
+                    AuthorName = {item.first_name + " " + item.last_name}
+                    raisedValue = {item.curr_donation}
+                    achievedPercent = {Math.floor((item.donation_goal - item.curr_donation)/(item.donation_goal) * 100)}
+                    lastDonation = {Math.floor(Math.random() * 23)}
+                    daysLeft = {getDaysLeft(item.due_date)}
+                    supportersCount = {item.supporters} 
+                    key = {item.id} 
+                    />
+                       </Link>
+                ))}
+         
         </div>
     )
 }
