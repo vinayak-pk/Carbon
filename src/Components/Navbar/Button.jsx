@@ -7,6 +7,7 @@ import { auth } from "../../firebase";
 import { connect } from "react-redux";
 import {useDispatch,useSelector} from "react-redux"
 import { setUser } from '../../Redux/Auth/auth.action';
+import {delData} from "../../Redux/Auth/persistData"
 function Button({ currentUser }) {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
@@ -33,7 +34,7 @@ function Button({ currentUser }) {
   let handleSignout=()=>{
     setClick(!click);
       auth.signOut();
-      localStorage.clear();
+     delData('user')
   }
   const [modalIsOpen, setmodalIsOpen] = useState(false);
   
