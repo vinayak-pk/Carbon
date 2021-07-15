@@ -30,8 +30,8 @@ import './Home_Css.css'
 import {Footer} from '../Footer/Footer';
 import  HomeDisplayCard  from './Home_Display_Cards';
 import Navbar from '../Navbar/Navbar';
-import Fund_Button from './Fund_Button';
-import Talk_Button from './Talk_Button';
+import FundButton from './Fund_Button';
+//import Talk_Button from './Talk_Button';
 export default function Home() {
   let history = useHistory(); 
   
@@ -76,7 +76,7 @@ export default function Home() {
               <div style={{ width: "80%", height: "30%" }}>
                 <p className="home_fontmanage">Ketto’s
                 <span className='home_fontmanage1'> 0% </span> <span className="home_fontmanage2"> Platform fees</span> ensures maximum funds for you</p>
-                <Fund_Button/>
+                <FundButton/>
                 <br />
                 <Link className="home_fontmanage3" to="/new/fundraiser">नि: शुल्क फंडरेजर शुरू करें</Link>
               </div>
